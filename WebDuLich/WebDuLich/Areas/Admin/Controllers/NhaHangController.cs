@@ -31,7 +31,8 @@ namespace WebDuLich.Areas.Admin.Controllers
         {
             new MapNhaHang().ThemMoi(model);
             ViewBag.thongbao = new MapNhaHang().thongbao;
-            return View(model);
+            return Redirect("/Admin/NhaHang");
+
         }
 
 
@@ -40,28 +41,29 @@ namespace WebDuLich.Areas.Admin.Controllers
             NhaHang nhaHang = new MapNhaHang().Chitiet(id);
             if (nhaHang != null)
             {
-                return RedirectToAction("Edit", "NhaHang", nhaHang);
+                return View(nhaHang);
             }
-            return View("Index");
+            return Redirect("/Admin/NhaHang");
+
         }
 
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult Update(NhaHang model)
         {
-            if (new MapNhaHang().ThemMoi(model))
+            if (new MapNhaHang().CapNhatTour(model))
             {
-                return View("Index");
+                return Redirect("/Admin/NhaHang");
             }
-
-            return RedirectToAction("Edit", "NhaHang", model);
+            return Redirect("/Admin/Nhahang");
+            //return RedirectToAction("Update", "NhaHang", model);
         }
 
         public ActionResult Delete(int id)
         {
             new MapNhaHang().Xoa(id);
             ViewBag.thongbao = new MapNhaHang().thongbao;
-            return View("index");
+            return Redirect("/Admin/NhaHang");
         }
     }
 }

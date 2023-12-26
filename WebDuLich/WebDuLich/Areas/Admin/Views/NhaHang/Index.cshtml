@@ -59,23 +59,26 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var item in Model)
+                                    @if (Model != null)
                                     {
-                                        <tr>
-                                            <td>@stt</td>
-                                            <td>@item.Ten</td>
-                                            <td>
-                                                <img src="@item.HinhAnh" width="100" heihgt="100" />
-                                            </td>
-                                            <td>@item.Gia</td>
-                                            <td>@item.DiaChi</td>
-                                            <td>@Html.Raw(@item.NoiDung)</td>
-                                            <td>
-                                                <a class="btn btn-sm btn-outline-info" href="/Admin/NhaHang/Update?id=@item.ID"><i class="fas fa-pen"></i></a>
-                                                <a class="btn btn-sm btn-outline-danger quickDelete" onclick="handlerConfirm('/Admin/NhaHang/Delete?id=@item.ID')"><i class="fas fa-trash"></i></a>
-                                            </td>
-                                        </tr>
-                                        stt++;
+                                        foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>@stt</td>
+                                                <td>@item.Ten</td>
+                                                <td>
+                                                    <img src="@item.HinhAnh" width="100" heihgt="100" />
+                                                </td>
+                                                <td>@item.Gia</td>
+                                                <td>@item.DiaChi</td>
+                                                <td>@Html.Raw(@item.NoiDung)</td>
+                                                <td>
+                                                    <a class="btn btn-sm btn-outline-info" href="/Admin/NhaHang/Update?id=@item.ID"><i class="fas fa-pen"></i></a>
+                                                    <a class="btn btn-sm btn-outline-danger quickDelete" onclick="handlerConfirm('/Admin/NhaHang/Delete?id=@item.ID')"><i class="fas fa-trash"></i></a>
+                                                </td>
+                                            </tr>
+                                            stt++;
+                                        }
                                     }
                                 </tbody>
                             </table>

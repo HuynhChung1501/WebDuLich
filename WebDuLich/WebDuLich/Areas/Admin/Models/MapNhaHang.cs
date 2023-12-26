@@ -60,6 +60,12 @@ namespace WebDuLich.Areas.Admin.Models
                     return false;
                 }
 
+                if (string.IsNullOrEmpty(model.DiaChi))
+                {
+                    thongbao = "Tên nhà hàng không được để trống";
+                    return false;
+                }
+
                 nhaHang.Ten = model.Ten;
                 nhaHang.Gia = model.Gia;
                 nhaHang.DiaChi = model.DiaChi;

@@ -315,6 +315,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Ten" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Ngay" Type="DateTime" Precision="3" />
+          <Property Name="HinhAnh" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="Noidung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="HinhAnh">
@@ -488,7 +489,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -527,6 +528,7 @@
             <EntityTypeMapping TypeName="TestDataModel.GioiThieu">
               <MappingFragment StoreEntitySet="GioiThieu">
                 <ScalarProperty Name="Noidung" ColumnName="Noidung" />
+                <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
                 <ScalarProperty Name="Ngay" ColumnName="Ngay" />
                 <ScalarProperty Name="Ten" ColumnName="Ten" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
