@@ -140,6 +140,7 @@
           <Property Name="FullName" Type="nvarchar" MaxLength="50" />
           <Property Name="SoDienThoai" Type="varchar" MaxLength="20" />
           <Property Name="IsActive" Type="bit" />
+          <Property Name="Avatar" Type="nvarchar(max)" />
         </EntityType>
         <Association Name="FK_HinhAnh_AlbumAnh">
           <End Role="AlbumAnh" Type="Self.AlbumAnh" Multiplicity="0..1" />
@@ -423,6 +424,7 @@
           <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SoDienThoai" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="IsActive" Type="Boolean" />
+          <Property Name="Avatar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="PhanQuyens" Relationship="TestDataModel.FK_PhanQuyen_User" FromRole="User" ToRole="PhanQuyen" />
         </EntityType>
         <Association Name="FK_HinhAnh_AlbumAnh">
@@ -635,6 +637,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="TestDataModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
                 <ScalarProperty Name="FullName" ColumnName="FullName" />

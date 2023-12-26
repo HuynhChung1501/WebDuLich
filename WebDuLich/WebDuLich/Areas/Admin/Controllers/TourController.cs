@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using WebDuLich.Areas.Admin.Models;
 using WebDuLich.DB;
+using WebDuLich.Models.ModelView.Tours;
 
 namespace WebDuLich.Areas.Admin.Controllers
 {

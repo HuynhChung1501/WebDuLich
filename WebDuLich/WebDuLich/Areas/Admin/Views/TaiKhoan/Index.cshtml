@@ -1,10 +1,9 @@
-﻿@model WebDuLich.Models.ModelView.Tours.MapTourView
+﻿@model WebDuLich.Models.ModelView.TaiKhoan.MapTaiKhoanView
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Danh sách tài khoản";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
     int stt = 1;
-    List<WebDuLich.DB.DiaDiem> diaDiems = Model.diaDiems;
-    List<WebDuLich.DB.KhachSan> khachSans = Model.khachSans;
+    List<WebDuLich.DB.User> users = Model.Users;
 }
 <!-- Content Header (Page header) -->
 <section class="content-header">
@@ -16,7 +15,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="/Home">Home</a></li>
-                    <li class="breadcrumb-item active">Danh sách tour</li>
+                    <li class="breadcrumb-item active">Danh sách taikhoan</li>
                 </ol>
             </div>
         </div>
@@ -32,7 +31,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <a href="/Admin/Tour/Create" class="btn btn-primary">Thêm mới</a>
+                            <a href="/Admin/TaiKhoan/Create" class="btn btn-primary">Thêm mới</a>
 
                             <div class="card-tools">
                                 <div class="input-group input-group-sm" style="width: 150px;">
@@ -52,49 +51,42 @@
                                 <thead>
                                     <tr>
                                         <th>STT</th>
-                                        <th>Tên Tour</th>
-                                        <th>Hình Ảnh</th>
-                                        <th>Giá Cũ</th>
-                                        <th>Giá Mới</th>
-                                        <th>Bài viết</th>
-                                        <th>Điểm đến</th>
-                                        <th>Khách sạn</th>
-                                        <th>Chức năng</th>
+                                        <th>Tài khoan</th>
+                                        <th>Avatar</th>
+                                        <th>Họ & tên</th>
+                                        <th>Số điện thoại </th>
+                                        <th>Trạng thái hoạt động </th>
+                                        <th>Thao tác</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var item in Model.tours)
+                                    @foreach (var item in users)
                                     {
                                         <tr>
                                             <td>@stt</td>
-                                            <td>@item.TenTour</td>
                                             <td>
-                                                <img src="@item.HinhAnh" width="100" heihgt="100" />
+                                                <a href="/Admin/TaiKhoan/Detail?userName=@item.UserName">@item.UserName</a>
                                             </td>
-                                            <td>@item.GiaCu</td>
-                                            <td>@item.GiaMoi</td>
-                                            <td>@Html.Raw(@item.BaiViet)</td>
                                             <td>
-                                                @foreach (var diadiem in diaDiems)
-                                                {
-                                                    if (diadiem.ID == item.IDDiaDiem)
+                                                <img src="@item.Avatar" style="border-radius: 50%" width="60" heihgt="60" />
+                                            </td>
+                                            <td>@item.FullName</td>
+                                            <td>@item.SoDienThoai</td>
+                                            <td>
+                                                @{
+                                                    if (@item.IsActive == true)
                                                     {
-                                                        @diadiem.Ten
+                                                        <span class="text-success">Hoạt động</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="text-danger"> Không Hoạt động</span>
                                                     }
                                                 }
                                             </td>
                                             <td>
-                                                @foreach (var khachSan in khachSans)
-                                                {
-                                                    if (khachSan.ID == item.IDKhachSan)
-                                                    {
-                                                        @khachSan.Ten
-                                                    }
-                                                }
-                                            </td>
-                                            <td>
-                                                <a class="btn btn-sm btn-outline-info" href="/Admin/Tour/Update?id=@item.ID"><i class="fas fa-pen"></i></a>
-                                                <a class="btn btn-sm btn-outline-danger quickDelete" onclick="handlerConfirm('/Admin/Tour/Delete?id=@item.ID')"><i class="fas fa-trash"></i></a>
+                                                <a class="btn btn-sm btn-outline-info" href="/Admin/TaiKhoan/Update?userName=@item.UserName"><i class="fas fa-pen"></i></a>
+                                                <a class="btn btn-sm btn-outline-danger quickDelete" onclick="handlerConfirm('/Admin/TaiKhoan/Delete?userName=@item.UserName')"><i class="fas fa-trash"></i></a>
                                             </td>
                                         </tr>
                                         stt++;

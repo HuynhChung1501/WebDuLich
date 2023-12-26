@@ -1,0 +1,98 @@
+﻿@model WebDuLich.Models.ModelView.TaiKhoan.MapTaiKhoanView
+@{
+    ViewBag.Title = "Chi tiết ";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    int stt = 1;
+    WebDuLich.DB.User user = Model.User;
+}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>@ViewBag.title</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Home">Home</a></li>
+                    <li class="breadcrumb-item active">Danh sách taikhoan</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <!-- SELECT2 EXAMPLE -->
+        <div class="card card-default">
+            <!-- /.card-header -->
+            <div class="row">
+                <div class="col-4">
+                    <div class="card card-primary card-outline">
+                        <div class="card-body box-profile">
+                            <div class="text-center">
+                                <img class="profile-user-img img-fluid img-circle" src="@user.Avatar" alt="User profile picture">
+                            </div>
+                            <h3 class="profile-username text-center">@user.UserName</h3>
+                            <p class="text-muted text-center">Software Engineer</p>
+                            <ul class="list-group list-group-unbordered mb-3">
+                                <li class="list-group-item">
+                                    <b>Họ tên:</b> <span class="float-right">@user.FullName</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Số điện thoại:</b> <span class="float-right">@user.SoDienThoai</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Trạng thái hoạt đông:</b>
+                                    <span class="float-right">
+                                        @{
+                                            if (user.IsActive == true)
+                                            {
+                                                <span class="text-success">Hoạt động</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="text-danger">Không Hoạt động</span>
+                                            }
+                                        }
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-8">
+                    <div class="card card-blue">
+                        <!-- /.card-header -->
+                        <div class="card-header">
+                            Phân quyền
+                        </div>
+                        <div class="card-body table-responsive p-0" style="height: 650px;">
+                            <table class="table table-head-fixed text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Mã chức năng</th>
+                                        <th>Nhóm chức năng</th>
+                                        <th>Tên chức năng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->

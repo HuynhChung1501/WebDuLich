@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebDuLich.Areas.Admin.Models;
-using WebDuLich.Areas.Admin.Models.ModelView.NhaHang;
 using WebDuLich.DB;
 
 namespace WebDuLich.Areas.Admin.Controllers

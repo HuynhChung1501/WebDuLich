@@ -148,13 +148,13 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\NhaHangController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TaiKhoanController.cs" />
     <Compile Include="Areas\Admin\Controllers\TourController.cs" />
     <Compile Include="Areas\Admin\Models\MapDiaDiem.cs" />
     <Compile Include="Areas\Admin\Models\MapKhachSan.cs" />
     <Compile Include="Areas\Admin\Models\MapNhaHang.cs" />
+    <Compile Include="Areas\Admin\Models\MapTaiKhoan.cs" />
     <Compile Include="Areas\Admin\Models\MapTour.cs" />
-    <Compile Include="Areas\Admin\Models\ModelView\NhaHang\MapNhaHangView.cs" />
-    <Compile Include="Areas\Admin\Models\ModelView\Tour\MapTourView.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DB\AlbumAnh.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -213,6 +213,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ModelView\NhaHang\MapNhaHangView.cs" />
+    <Compile Include="Models\ModelView\TaiKhoan\MapTaiKhoanView.cs" />
+    <Compile Include="Models\ModelView\Tours\MapTourView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -4082,6 +4085,10 @@
     <Content Include="Areas\Admin\Views\NhaHang\Index.cshtml" />
     <Content Include="Areas\Admin\Views\NhaHang\Create.cshtml" />
     <Content Include="Areas\Admin\Views\NhaHang\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\TaiKhoan\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\TaiKhoan\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\TaiKhoan\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\TaiKhoan\Detail.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -4114,7 +4121,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

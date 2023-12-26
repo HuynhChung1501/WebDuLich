@@ -1,5 +1,5 @@
 function handlerConfirm(e) {
-      var result =  confirm("Bạn có muốn xóa phần không?")
+      var result =  confirm("Bạn có chắc chắn muốn xóa không?")
       if (result) {
             location.href = e
       }
