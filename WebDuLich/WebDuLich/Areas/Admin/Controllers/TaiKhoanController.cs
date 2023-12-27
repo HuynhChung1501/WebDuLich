@@ -79,11 +79,16 @@ namespace WebDuLich.Areas.Admin.Controllers
         public ActionResult Detail(string userName)
         {
             User user = new MapTaiKhoan().Chitiet(userName);
+            List<ChucNang> chucNang = new MapChucNang().DanhSach();
+            List<PhanQuyen> phanQuyen = new MapPhanQuyen().DanhSach();
+
             if (user != null)
             {
                 return View(new MapTaiKhoanView()
                 {
-                    User = user
+                    User = user,
+                    DanhSachPhanQuyen = phanQuyen,
+                    DanhSachChucNang = chucNang,
                 });
             }
             return Redirect("/Admin/TaiKhoan");
@@ -94,6 +99,28 @@ namespace WebDuLich.Areas.Admin.Controllers
             new MapTaiKhoan().Xoa(userName);
             ViewBag.thongbao = new MapTaiKhoan().thongbao;
             return Redirect("/Admin/TaiKhoan");
+        }
+
+        public JsonResult PhanQuyenTaiKhoan (string userName, string maChucNang)
+        {
+            PhanQuyen phanQuyen = db.PhanQuyens.FirstOrDefault(n => n.UserName == userName && n.MaChucNang == maChucNang);
+            if (phanQuyen != null)
+            {
+                db.PhanQuyens.Remove(phanQuyen);
+                db.SaveChanges();
+            }
+            else
+            {
+                phanQuyen = new PhanQuyen();
+                phanQuyen.UserName = userName;
+                phanQuyen.MaChucNang= maChucNang;
+                db.PhanQuyens.Add(phanQuyen);
+                db.SaveChanges();
+            }
+            return Json(new
+            {
+                status = "ok"
+            });
         }
     }
 }

@@ -150,9 +150,11 @@
     <Compile Include="Areas\Admin\Controllers\NhaHangController.cs" />
     <Compile Include="Areas\Admin\Controllers\TaiKhoanController.cs" />
     <Compile Include="Areas\Admin\Controllers\TourController.cs" />
+    <Compile Include="Areas\Admin\Models\MapChucNang.cs" />
     <Compile Include="Areas\Admin\Models\MapDiaDiem.cs" />
     <Compile Include="Areas\Admin\Models\MapKhachSan.cs" />
     <Compile Include="Areas\Admin\Models\MapNhaHang.cs" />
+    <Compile Include="Areas\Admin\Models\MapPhanQuyen.cs" />
     <Compile Include="Areas\Admin\Models\MapTaiKhoan.cs" />
     <Compile Include="Areas\Admin\Models\MapTour.cs" />
     <Compile Include="Controllers\HomeController.cs" />

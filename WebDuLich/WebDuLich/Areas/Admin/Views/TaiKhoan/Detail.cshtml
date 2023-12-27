@@ -2,8 +2,11 @@
 @{
     ViewBag.Title = "Chi tiết ";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
-    int stt = 1;
     WebDuLich.DB.User user = Model.User;
+    List<WebDuLich.DB.ChucNang> chucNangs = Model.DanhSachChucNang;
+    List<WebDuLich.DB.PhanQuyen> phanQuyens = Model.DanhSachPhanQuyen;
+
+    int stt = 1;
 }
 <!-- Content Header (Page header) -->
 <section class="content-header">
@@ -25,74 +28,121 @@
 <section class="content">
     <div class="container-fluid">
         <!-- SELECT2 EXAMPLE -->
-        <div class="card card-default">
-            <!-- /.card-header -->
-            <div class="row">
-                <div class="col-4">
-                    <div class="card card-primary card-outline">
-                        <div class="card-body box-profile">
-                            <div class="text-center">
-                                <img class="profile-user-img img-fluid img-circle" src="@user.Avatar" alt="User profile picture">
-                            </div>
-                            <h3 class="profile-username text-center">@user.UserName</h3>
-                            <p class="text-muted text-center">Software Engineer</p>
-                            <ul class="list-group list-group-unbordered mb-3">
-                                <li class="list-group-item">
-                                    <b>Họ tên:</b> <span class="float-right">@user.FullName</span>
-                                </li>
-                                <li class="list-group-item">
-                                    <b>Số điện thoại:</b> <span class="float-right">@user.SoDienThoai</span>
-                                </li>
-                                <li class="list-group-item">
-                                    <b>Trạng thái hoạt đông:</b>
-                                    <span class="float-right">
-                                        @{
-                                            if (user.IsActive == true)
-                                            {
-                                                <span class="text-success">Hoạt động</span>
-                                            }
-                                            else
-                                            {
-                                                <span class="text-danger">Không Hoạt động</span>
-                                            }
+        <div class="row">
+            <div class="col-4">
+                <div class="card card-primary card-outline">
+                    <div class="card-body box-profile">
+                        <div class="text-center">
+                            <img class="profile-user-img img-fluid img-circle" src="@user.Avatar" alt="User profile picture">
+                        </div>
+                        <h3 class="profile-username text-center">@user.UserName</h3>
+                        @*<p class="text-muted text-center">Software Engineer</p>*@
+                        <ul class="list-group list-group-unbordered mb-3">
+                            <li class="list-group-item">
+                                <b>Họ tên:</b> <span class="float-right">@user.FullName</span>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Số điện thoại:</b> <span class="float-right">@user.SoDienThoai</span>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Trạng thái hoạt đông:</b>
+                                <span class="float-right">
+                                    @{
+                                        if (user.IsActive == true)
+                                        {
+                                            <span class="text-success">Hoạt động</span>
                                         }
-                                    </span>
-                                </li>
-                            </ul>
-                        </div>
+                                        else
+                                        {
+                                            <span class="text-danger">Không Hoạt động</span>
+                                        }
+                                    }
+                                </span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                <div class="col-8">
-                    <div class="card card-blue">
-                        <!-- /.card-header -->
-                        <div class="card-header">
-                            Phân quyền
-                        </div>
-                        <div class="card-body table-responsive p-0" style="height: 650px;">
-                            <table class="table table-head-fixed text-nowrap">
-                                <thead>
-                                    <tr>
-                                        <th>STT</th>
-                                        <th>Mã chức năng</th>
-                                        <th>Nhóm chức năng</th>
-                                        <th>Tên chức năng</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- /.card-body -->
-                    </div>
-                    <!-- /.card -->
-                </div>
-
             </div>
-            <!-- /.card-body -->
+            <div class="col-8">
+                <div class="card card-blue">
+                    <!-- /.card-header -->
+                    <div class="card-header">
+                        Phân quyền
+                    </div>
+                    <div class="card-body table-responsive p-0" style="height: 650px;">
+                        <table class="table table-head-fixed text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Mã chức năng</th>
+                                    <th>Nhóm chức năng</th>
+                                    <th>Tên chức năng</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (chucNangs != null)
+                                {
+                                    foreach (var item in chucNangs)
+                                    {
+                                        <tr>
+                                            <td>@stt</td>
+                                            <td>@item.MaChucNang</td>
+                                            <td>@item.NhomChucNang</td>
+                                            <td>@item.TenChucNang</td>
+                                            <td>
+                                                @{
+                                                    int phanQuyen = phanQuyens.Count(n => n.UserName == user.UserName && n.MaChucNang == item.MaChucNang);
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input class="custom-control-input"
+                                                               type="checkbox"
+                                                               @(phanQuyen > 0 ? "checked" : "")
+                                                               onchange="luuPhanQuyen('@user.UserName', '@item.MaChucNang')"
+                                                               id="check1-@stt" />
+                                                        <label for="check1-@stt" class="custom-control-label"></label>
+                                                    </div>
+                                                }
+                                            </td>
+                                        </tr>
+                                        stt++;
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+
         </div>
         <!-- /.card -->
     </div>
     <!-- /.container-fluid -->
 </section>
 <!-- /.content -->
+
+@section script {
+
+    <script>
+        //$("#checkQuyen").on("change", function () {
+        //    alert("Handler for `click` called.");
+        //});
+        function luuPhanQuyen(tenDangNhap, maChucNang) {
+            var jsonData = {
+                userName: tenDangNhap,
+                maChucNang: maChucNang
+            }
+
+            $.ajax({
+                url: '/admin/TaiKhoan/PhanQuyenTaiKhoan',
+                type: 'post',
+                data: jsonData,
+                datatype: 'JSON',
+                success: function (jsondata) {
+                    alert(data.status)
+                },
+            });
+        }
+    </script>
+}

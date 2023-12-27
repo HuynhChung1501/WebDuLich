@@ -12,6 +12,14 @@ namespace WebDuLich.Models.ModelView.TaiKhoan
 
         public User User { get; set; }
 
+        public List<PhanQuyen> DanhSachPhanQuyen { get; set; }
+
+        public List<ChucNang> DanhSachChucNang { get; set; } 
+
+        public PhanQuyen PhanQuyen { get; set; }
+
+        public ChucNang chucNang { get; set; }
+
         public string UserName { get; set; }
         public string Password { get; set; }
         public string FullName { get; set; }
