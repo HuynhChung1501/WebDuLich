@@ -18,16 +18,28 @@ namespace WebDuLich.Areas.Admin.Models
             return users;
         }
 
-        public User Chitiet(string userName)
+        public User Chitiet(string userName, string pass = "")
         {
+            if(!string.IsNullOrEmpty(pass))
+            {
+                User tk = db.Users.FirstOrDefault(n => n.UserName == userName && n.Password == pass);
+                if (tk != null)
+                {
+                    return tk;
+                }else
+                {
+                    return null;
+                }
+            }
+
             User user = db.Users.FirstOrDefault(n => n.UserName == userName);
 
-            if (user == null)
+            if (user != null)
             {
-                thongbao = "không tìm thấy nhà tài khoản phù hợp";
-                return null;
+                thongbao = "không tìm thấy tài khoản phù hợp";
+                return user;
             }
-            return user;
+            return null;
         }
 
         public bool ThemMoi(User user)

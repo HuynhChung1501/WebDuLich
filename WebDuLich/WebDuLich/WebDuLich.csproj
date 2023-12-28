@@ -142,11 +142,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\CookieHelper.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\kiemTraQuyen.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ErorrController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\NhaHangController.cs" />
     <Compile Include="Areas\Admin\Controllers\TaiKhoanController.cs" />
     <Compile Include="Areas\Admin\Controllers\TourController.cs" />
@@ -4091,6 +4095,8 @@
     <Content Include="Areas\Admin\Views\TaiKhoan\Create.cshtml" />
     <Content Include="Areas\Admin\Views\TaiKhoan\Update.cshtml" />
     <Content Include="Areas\Admin\Views\TaiKhoan\Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\Login\DangNhap.cshtml" />
+    <Content Include="Areas\Admin\Views\Erorr\PhanQuyen.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

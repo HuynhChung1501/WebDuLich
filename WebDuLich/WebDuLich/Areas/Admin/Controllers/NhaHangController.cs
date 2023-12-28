@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebDuLich.App_Start;
 using WebDuLich.Areas.Admin.Models;
 using WebDuLich.DB;
 
 namespace WebDuLich.Areas.Admin.Controllers
 {
+    [kiemTraQuyen]
     public class NhaHangController : Controller
     {
         TestDataEntities2 db = new TestDataEntities2();
 
+        [kiemTraQuyen(ChucNang= "NH_XemDS")]
         // GET: Admin/NhaHang
         public ActionResult Index()
         {
@@ -19,6 +22,7 @@ namespace WebDuLich.Areas.Admin.Controllers
             return View(nhaHangs);
         }
 
+        [kiemTraQuyen(ChucNang = "NH_ThemMoi")]
         public ActionResult Create()
         {
             return View();
@@ -34,7 +38,7 @@ namespace WebDuLich.Areas.Admin.Controllers
 
         }
 
-
+        [kiemTraQuyen(ChucNang = "NH_ChinhSua")]
         public ActionResult Update(int id)
         {
             NhaHang nhaHang = new MapNhaHang().Chitiet(id);
@@ -58,6 +62,7 @@ namespace WebDuLich.Areas.Admin.Controllers
             //return RedirectToAction("Update", "NhaHang", model);
         }
 
+        [kiemTraQuyen(ChucNang = "NH_Xoa")]
         public ActionResult Delete(int id)
         {
             new MapNhaHang().Xoa(id);

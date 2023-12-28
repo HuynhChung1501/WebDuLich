@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebDuLich.App_Start;
 using WebDuLich.Areas.Admin.Models;
 using WebDuLich.DB;
 using WebDuLich.Models.ModelView.TaiKhoan;
 
 namespace WebDuLich.Areas.Admin.Controllers
 {
+    [kiemTraQuyen]
     public class TaiKhoanController : Controller
     {
         TestDataEntities2 db = new TestDataEntities2();
