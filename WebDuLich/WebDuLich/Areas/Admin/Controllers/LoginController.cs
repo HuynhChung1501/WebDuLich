@@ -23,8 +23,6 @@ namespace WebDuLich.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult DangNhap(string UserName, string Password)
         {
-
-
             ViewBag.thongbao = "";
             if (string.IsNullOrEmpty(UserName) && string.IsNullOrEmpty(Password))
             {
@@ -34,7 +32,8 @@ namespace WebDuLich.Areas.Admin.Controllers
 
             User user = new MapTaiKhoan().Chitiet(UserName, Password);
 
-            if (user == null) {
+            if (user == null)
+            {
                 ViewBag.thongbao = "Tài khoản, mật khẩu không chính xác!";
                 return View();
             }
@@ -44,6 +43,14 @@ namespace WebDuLich.Areas.Admin.Controllers
             CookieHelper.Create("passWord", user.Password, DateTime.Now.AddDays(10));
 
             return Redirect("/Admin/Home");
+        }
+
+        public ActionResult DangXuat()
+        {
+            CookieHelper.Delete("userName");
+            CookieHelper.Delete("passWord");
+
+            return Redirect("/Admin/login/DangNhap");
         }
     }
 }

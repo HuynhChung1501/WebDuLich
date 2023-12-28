@@ -33,5 +33,17 @@ namespace WebDuLich.App_Start
             }
             return null;
         }
+
+        public static void Delete(string name)
+        {
+            // Assuming "myCookie" is the name of the cookie you want to delete
+            HttpCookie myCookie = new HttpCookie(name);
+
+            // Set the expiration date to a date in the past
+            myCookie.Expires = DateTime.Now.AddYears(-1);
+
+            // Add the cookie to the response to ensure it gets sent to the client with the updated expiration date
+            HttpContext.Current.Response.Cookies.Add(myCookie);
+        }
     }
 }
