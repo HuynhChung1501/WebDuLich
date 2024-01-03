@@ -1,0 +1,176 @@
+﻿@model WebDuLich.Models.ModelView.TaiKhoan.MapTaiKhoanView
+@{
+    ViewBag.Title = "Chi tiết ";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    WebDuLich.DB.User user = Model.User;
+    List<WebDuLich.DB.ChucNang> chucNangs = Model.DanhSachChucNang;
+    List<WebDuLich.DB.PhanQuyen> phanQuyens = Model.DanhSachPhanQuyen;
+
+    int stt = 1;
+
+}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>@ViewBag.title</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Home">Home</a></li>
+                    <li class="breadcrumb-item active">Danh sách taikhoan</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <!-- SELECT2 EXAMPLE -->
+        <div class="row">
+            <div class="col-4">
+                <div class="card card-primary card-outline">
+                    <div class="card-body box-profile">
+                        <div class="text-center">
+                            <img class="profile-user-img img-fluid img-circle" src="@user.Avatar" alt="User profile picture">
+                        </div>
+                        <h3 class="profile-username text-center">@user.UserName</h3>
+                        @*<p class="text-muted text-center">Software Engineer</p>*@
+                        <ul class="list-group list-group-unbordered mb-3">
+                            <li class="list-group-item">
+                                <b>Họ tên:</b> <span class="float-right">@user.FullName</span>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Số điện thoại:</b> <span class="float-right">@user.SoDienThoai</span>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Trạng thái hoạt đông:</b>
+                                <span class="float-right">
+                                    @{
+                                        if (user.IsActive == true)
+                                        {
+                                            <span class="text-success">Hoạt động</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-danger">Không Hoạt động</span>
+                                        }
+                                    }
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="card card-blue">
+                    <!-- /.card-header -->
+                    <div class="card-header">
+                        Phân quyền
+                    </div>
+                    <div class="card-body table-responsive p-0" style="height: 650px;">
+                        <table class="table table-head-fixed text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Mã chức năng</th>
+                                    <th>Nhóm chức năng</th>
+                                    <th>Tên chức năng</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (chucNangs != null)
+                                {
+                                    foreach (var item in chucNangs)
+                                    {
+                                        <tr>
+                                            <td>@stt</td>
+                                            <td>@item.MaChucNang</td>
+                                            <td>@item.NhomChucNang</td>
+                                            <td>@item.TenChucNang</td>
+                                            <td>
+                                                @{
+                                                    int phanQuyen = phanQuyens.Count(n => n.UserName == user.UserName && n.MaChucNang == item.MaChucNang);
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input class="custom-control-input"
+                                                               type="checkbox"
+                                                               @(phanQuyen > 0 ? "checked" : "")
+                                                               onchange="luuPhanQuyen('@user.UserName', '@item.MaChucNang')"
+                                                               id="check1-@stt" />
+                                                        <label for="check1-@stt" class="custom-control-label"></label>
+                                                    </div>
+                                                }
+                                            </td>
+                                        </tr>
+                                        stt++;
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+
+<div class="card card-warning card-outline">
+    <div class="card-header">
+        <h3 class="card-title">
+            <i class="fas fa-edit"></i>
+            Toastr Examples
+        </h3>
+    </div>
+ 
+    <div class="card-body">
+        <button type="button" class="btn btn-success toastrDefaultSuccess">
+            Launch Success Toast
+        </button>
+        <button type="button" class="btn btn-info toastrDefaultInfo">
+            Launch Info Toast
+        </button>
+        <button type="button" class="btn btn-danger toastrDefaultError">
+            Launch Error Toast
+        </button>
+        <button type="button" class="btn btn-warning toastrDefaultWarning">
+            Launch Warning Toast
+        </button>
+        <div class="text-muted mt-3">
+            For more examples look at <a href="https://codeseven.github.io/toastr/">https://codeseven.github.io/toastr/</a>
+        </div>
+    </div>
+    <!-- /.card -->
+</div>
+@section script {
+
+    <script>
+        
+        function luuphanquyen(tendangnhap, machucnang) {
+            var jsondata = {
+                username: tendangnhap,
+                machucnang: machucnang
+            }
+
+            $.ajax({
+                url: '/admin/taikhoan/phanquyentaikhoan',
+                type: 'post',
+                data: jsondata,
+                datatype: 'json',
+                success: function (jsondata) {
+                    alert(data.status)
+                },
+            });
+        }
+
+        
+    </script>
+}
