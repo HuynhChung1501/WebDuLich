@@ -4,7 +4,22 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
     int stt = 1;
     List<WebDuLich.DB.User> users = Model.Users;
+
+    var msg = ViewData["msgsuccess"] != null ? ViewData["msgsuccess"] : "";
 }
+
+
+
+@if (msg != null)
+{
+    @section script
+{
+        <script>
+            toastr.success("@ViewData["msgsuccess"]")
+        </script>
+    }
+}
+
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <div class="container-fluid">
