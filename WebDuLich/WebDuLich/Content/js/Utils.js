@@ -1,28 +1,29 @@
-var Utils = {
-    Toast: function () {
+var utils = {
+    toast: function () {
         toastr.options = {
-            "closeButton": true
+            "closebutton": true
         };
         
-        $('.toastrDefaultSuccess').click(function () {
-            toastr.success('Đăng ký thành công.')
+        $('.toastrdefaultsuccess').click(function () {
+            toastr.success('đăng ký thành công.')
         });
-        $('.toastrDefaultError').click(function () {
-            toastr.error('Lỗi')
+        $('.toastrdefaulterror').click(function () {
+            toastr.error('lỗi')
         });
-        $('.toastrDefaultInfo').click(function () {
-            toastr.info('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
+        $('.toastrdefaultinfo').click(function () {
+            toastr.info('lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
         });
-        $('.toastrDefaultWarning').click(function () {
-            toastr.warning('Cảnh báo.')
+        $('.toastrdefaultwarning').click(function () {
+            toastr.warning('cảnh báo.')
         });
 
-        $(document).find(selector2).ready(function () {
+        //$(document).find(selector2).ready(function () {
             
-        });
+        //});
     }
+
 }
 
 $(document).ready(function () {
-    Utils.Toast();
+    utils.toast();
 });

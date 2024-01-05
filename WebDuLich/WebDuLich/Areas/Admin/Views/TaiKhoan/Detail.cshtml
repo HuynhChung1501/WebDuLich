@@ -123,7 +123,7 @@
 </section>
 <!-- /.content -->
 
-<div class="card card-warning card-outline">
+<!--<div class="card card-warning card-outline">
     <div class="card-header">
         <h3 class="card-title">
             <i class="fas fa-edit"></i>
@@ -147,21 +147,22 @@
         <div class="text-muted mt-3">
             For more examples look at <a href="https://codeseven.github.io/toastr/">https://codeseven.github.io/toastr/</a>
         </div>
-    </div>
+    </div>-->
     <!-- /.card -->
-</div>
+<!--</div>-->
+
 @section script {
 
     <script>
         
-        function luuphanquyen(tendangnhap, machucnang) {
+        function luuPhanQuyen(tendangnhap, machucnang) {
             var jsondata = {
                 username: tendangnhap,
                 machucnang: machucnang
             }
 
             $.ajax({
-                url: '/admin/taikhoan/phanquyentaikhoan',
+                url: '/admin/TaiKhoan/PhanQuyenTaiKhoan',
                 type: 'post',
                 data: jsondata,
                 datatype: 'json',
@@ -170,7 +171,6 @@
                 },
             });
         }
-
         
     </script>
 }
