@@ -11,7 +11,7 @@ namespace WebDuLich.Areas.Admin.Controllers
 {
     public class LoginController : Controller
     {
-        TestDataEntities2 db = new TestDataEntities2();
+        TestDataEntities db = new TestDataEntities();
         // GET: Admin/Login
 
         public ActionResult DangNhap()

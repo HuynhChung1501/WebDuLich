@@ -12,13 +12,9 @@ namespace WebDuLich.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class PhuongTien
+    public partial class LoaiPhuongTien
     {
-        public int ID { get; set; }
-        public Nullable<int> ChoNgoi { get; set; }
-        public Nullable<decimal> Gia { get; set; }
-        public string HinhAnh { get; set; }
-        public string NoiDung { get; set; }
-        public Nullable<int> IDPhuongTien { get; set; }
+        public int IDPhuongTien { get; set; }
+        public string Ten { get; set; }
     }
 }

@@ -8,7 +8,7 @@ namespace WebDuLich.Areas.Admin.Models
 {
     public class MapTour
     {
-        TestDataEntities2 db = new TestDataEntities2();
+        TestDataEntities db = new TestDataEntities();
         public string thongbao = "";
 
         public List<Tour> DanhSach()
@@ -47,7 +47,7 @@ namespace WebDuLich.Areas.Admin.Models
             return false;
         }
 
-        public bool CapNhatTour(Tour model)
+        public bool CapNhat(Tour model)
         {
 
             Tour tour = db.Tours.FirstOrDefault(n => n.ID == model.ID);

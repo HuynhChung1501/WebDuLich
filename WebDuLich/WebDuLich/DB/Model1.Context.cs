@@ -13,10 +13,10 @@ namespace WebDuLich.DB
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class TestDataEntities2 : DbContext
+    public partial class TestDataEntities : DbContext
     {
-        public TestDataEntities2()
-            : base("name=TestDataEntities2")
+        public TestDataEntities()
+            : base("name=TestDataEntities")
         {
         }
     
@@ -38,5 +38,6 @@ namespace WebDuLich.DB
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Tour> Tours { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<LoaiPhuongTien> LoaiPhuongTiens { get; set; }
     }
 }

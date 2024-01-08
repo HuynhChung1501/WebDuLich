@@ -12,7 +12,7 @@ namespace WebDuLich.Areas.Admin.Controllers
     [kiemTraQuyen]
     public class NhaHangController : Controller
     {
-        TestDataEntities2 db = new TestDataEntities2();
+        TestDataEntities db = new TestDataEntities();
 
         [kiemTraQuyen(ChucNang= "NH_XemDS")]
         // GET: Admin/NhaHang
@@ -54,7 +54,7 @@ namespace WebDuLich.Areas.Admin.Controllers
         [ValidateInput(false)]
         public ActionResult Update(NhaHang model)
         {
-            if (new MapNhaHang().CapNhatTour(model))
+            if (new MapNhaHang().CapNhat(model))
             {
                 return Redirect("/Admin/NhaHang");
             }

@@ -13,7 +13,7 @@ namespace WebDuLich.Areas.Admin.Controllers
     [kiemTraQuyen]
     public class TaiKhoanController : Controller
     {
-        TestDataEntities2 db = new TestDataEntities2();
+        TestDataEntities db = new TestDataEntities();
 
         // GET: Admin/taiKhoan
         public ActionResult Index()

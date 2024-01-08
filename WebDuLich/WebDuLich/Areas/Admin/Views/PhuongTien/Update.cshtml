@@ -1,0 +1,145 @@
+﻿@using WebDuLich.DB;
+
+@model  WebDuLich.Models.ModelView.PhuongTiens.MapPhuongTienView
+
+
+@{
+    List<LoaiPhuongTien> loaiPhuongTien = Model.DanhSachLoaiPhuongTien;
+    PhuongTien phuongTien = Model.PhuongTien;
+
+
+    ViewBag.title = "Chỉnh sửa phương tiện: " + Model.TenPhuongtien;
+    int stt = 1;
+
+}
+
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>@ViewBag.title</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Home">Home</a></li>
+                    <li class="breadcrumb-item active">Chỉnh sửa nhà hàng</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <!-- SELECT2 EXAMPLE -->
+        <div class="card card-default">
+            <!-- /.card-header -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            @*<a href="/Admin/Tour/Update" class="btn btn-primary">Thêm mới</a>*@
+
+                            <div class="card-tools">
+                                <div class="input-group input-group-sm" style="width: 150px;">
+                                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-default">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <form action="/Admin/NhaHang/Update" method="post">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="TenPhuongTien">Tên Phương tiện</label>
+                                    <select class="select2 w-100" name="IDPhuongTien">
+                                        @if (loaiPhuongTien.Count > 0 && loaiPhuongTien != null)
+                                        {
+                                            foreach (var item in loaiPhuongTien)
+                                            {
+                                                <option value="@item.IDPhuongTien" @(item.IDPhuongTien == phuongTien.ID ? "selected" : "" )>@item.Ten</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ChoNgoi">Chỗ ngồi</label>
+                                    <input type="number" name="ChoNgoi" class="form-control" value="@phuongTien.ChoNgoi" id="ChoNgoi" placeholder="Nhập số lượng chỗ ngồi">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Gia">Giá</label>
+                                    <input type="number" name="Gia" class="form-control" value="@phuongTien.Gia" id="Gia" placeholder="Nhập giá">
+                                </div>
+                                <div class="form-group">
+                                    <label for="HinhAnh" class="form-label">Hình Ảnh</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="text" class="custom-file-input" name="HinhAnh" value="" id="HinhAnh">
+                                            <label class="custom-file-label" id="txt-HinhAnh" for="HinhAnh">@phuongTien.HinhAnh"</label>
+                                        </div>
+                                        <div type="button" onclick="chooseImage()" class="input-group-append">
+                                            <span class="input-group-text">Upload</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Noidung" class="form-label">Nội dung</label>
+                                    <textarea class="form-control" name="Noidung" id="txtBaiViet">@phuongTien.NoiDung</textarea>
+                                </div>
+                                <input type="hidden" name="ID" value="@phuongTien.ID" class="form-control">
+                            </div>
+                            <div class="card-footer text-right">
+                                <button type="submit" class="btn btn-primary">Thêm</button>
+                            </div>
+                        </form>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+
+
+@section script
+{
+    <script>
+        function chooseImage() {
+            var finder = new CKFinder();
+            finder.selectActionFunction = dienUrlVaoInput;
+            finder.popup();
+        }
+
+        CKEDITOR.replace("txtBaiViet")
+
+        function dienUrlVaoInput(fileUrl) {
+            $("input[name=HinhAnh]").val(fileUrl)
+            $('#txt-HinhAnh').append(fileUrl);
+        }
+
+        $('.select2').select2()
+                //$(function () {
+                //    $('input[name="NgayTao"]').daterangepicker({
+                //        singleDatePicker: true,
+                //        showDropdowns: true,
+                //        minYear: 1901,
+                //        maxYear: parseInt(moment().format('YYYY'), 10)
+                //    }, function (start, end, label) {
+                //        var years = moment().diff(start, 'years');
+                //    });
+                //});
+
+    </script>
+}

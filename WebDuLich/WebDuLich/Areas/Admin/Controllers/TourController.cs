@@ -13,7 +13,7 @@ namespace WebDuLich.Areas.Admin.Controllers
     [kiemTraQuyen]
     public class TourController : Controller
     {
-        TestDataEntities2 db = new TestDataEntities2();
+        TestDataEntities db = new TestDataEntities();
         // GET: Tour
         public ActionResult Index()
         {
@@ -87,7 +87,7 @@ namespace WebDuLich.Areas.Admin.Controllers
         public ActionResult Update(Tour model)
         {
             MapTour tour = new MapTour();
-            if (tour.CapNhatTour(model))
+            if (tour.CapNhat(model))
             {
                 return Redirect("/Admin/Tour");
             }
