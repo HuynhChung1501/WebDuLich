@@ -1,6 +1,6 @@
 ﻿@model WebDuLich.Models.ModelView.Tours.MapTourView
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Danh sách Tour";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
     int stt = 1;
     List<WebDuLich.DB.DiaDiem> diaDiems = Model.diaDiems;
@@ -32,10 +32,18 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
+                            <div class="row">
+                                <div class=""></div>
+                            </div>
                             <a href="/Admin/Tour/Create" class="btn btn-primary">Thêm mới</a>
-
+                           
                             <div class="card-tools">
-                                <div class="input-group input-group-sm" style="width: 150px;">
+                                <div class="input-group input-group-sm d-flex">
+                                    <div class="form-group">
+                                        <select class="select2 w-100" name="IDKhachSan">
+                                            <option>check</option>
+                                        </select>
+                                    </div>
                                     <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
 
                                     <div class="input-group-append">
@@ -118,3 +126,16 @@
     <!-- /.container-fluid -->
 </section>
 <!-- /.content -->
+
+
+
+@section script
+{
+    <script>
+
+
+        $('.select2').select2()
+
+
+    </script>
+}
