@@ -1,9 +1,8 @@
-﻿
-@{
-    ViewBag.title = "Thêm mới nhà hàng";
-    int stt = 1;
-    var user = (WebDuLich.DB.User)System.Web.HttpContext.Current.Session["user"];
+﻿@model  WebDuLich.DB.KhachSan
 
+@{
+    ViewBag.title = "Chỉnh sửa nhà hàng: " + Model.Ten;
+    int stt = 1;
 }
 
 
@@ -17,7 +16,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="/Home">Home</a></li>
-                    <li class="breadcrumb-item active">Thêm mới nhà hàng </li>
+                    <li class="breadcrumb-item active">Chỉnh sửa khách sạn</li>
                 </ol>
             </div>
         </div>
@@ -33,6 +32,8 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
+                            @*<a href="/Admin/Tour/Update" class="btn btn-primary">Thêm mới</a>*@
+
                             <div class="card-tools">
                                 <div class="input-group input-group-sm" style="width: 150px;">
                                     <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
@@ -46,18 +47,18 @@
                             </div>
                         </div>
                         <!-- /.card-header -->
-                        <form action="/Admin/NhaHang/Create" method="post">
+                        <form action="/Admin/NhaHang/Update" method="post">
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="Ten">Tên nhà hàng</label>
-                                    <input type="text" name="Ten" class="form-control" id="Ten" placeholder="Nhập nhà hàng">
+                                    <label for="Ten">Tên khách sạn</label>
+                                    <input type="text" name="Ten" value="@Model.Ten" class="form-control" id="Ten" placeholder="Nhập khách sạn">
                                 </div>
                                 <div class="form-group">
                                     <label for="HinhAnh" class="form-label">Hình Ảnh</label>
                                     <div class="input-group">
                                         <div class="custom-file">
                                             <input type="text" class="custom-file-input" name="HinhAnh" value="" id="HinhAnh">
-                                            <label class="custom-file-label" id="txt-HinhAnh" for="HinhAnh"></label>
+                                            <label class="custom-file-label" id="txt-HinhAnh" for="HinhAnh">@Model.HinhAnh</label>
                                         </div>
                                         <div type="button" onclick="chooseImage()" class="input-group-append">
                                             <span class="input-group-text">Upload</span>
@@ -65,25 +66,18 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="DiaChi">Địa chỉ</label>
-                                    <input type="text" name="DiaChi" class="form-control" id="DiaChi" placeholder="Nhập địa chỉ">
+                                    <label for="GiaCu">Giá</label>
+                                    <input type="number" name="Gia" class="form-control" value="@Model.Gia" id="GiaCu" placeholder="Nhập giá">
                                 </div>
                                 <div class="form-group">
-                                    <label for="Gia">Giá</label>
-                                    <input type="text" name="Gia" class="form-control" id="Gia" placeholder="Nhập địa chỉ">
+                                    <label for="GiaMoi">Địa chỉ</label>
+                                    <input type="text" name="DiaChi" class="form-control" value="@Model.DiaChi" id="GiaMoi" placeholder="Nhập địa chỉ">
                                 </div>
                                 <div class="form-group">
-                                    <label for="Noidung" class="form-label">Nội dung</label>
-                                    <textarea class="form-control" name="Noidung" id="txtBaiViet"></textarea>
+                                    <label for="Noidung" class="form-label">Bài viết</label>
+                                    <textarea class="form-control" name="Noidung" id="txtBaiViet">@Model.Noidung</textarea>
                                 </div>
-                                <div class="form-group">
-                                    <label for="NgayTao">Ngày tạo</label>
-                                    <input type="text" name="NgayTao" class="form-control" readonly id="NgayTao" value="@DateTime.Now">
-                                </div>
-                                <div class="form-group">
-                                    <label for="NguoiTao">Người tạo</label>
-                                    <input type="text" name="NguoiTao" class="form-control" readonly id="NguoiTao" value='@(user.UserName != null ? user.UserName : "")'>
-                                </div>
+                                <input type="hidden" name="ID" value="@Model.ID" class="form-control">
                             </div>
                             <div class="card-footer text-right">
                                 <button type="submit" class="btn btn-primary">Thêm</button>
@@ -120,16 +114,16 @@
         }
 
         $('.select2').select2()
-        //$(function () {
-        //    $('input[name="NgayTao"]').daterangepicker({
-        //        singleDatePicker: true,
-        //        showDropdowns: true,
-        //        minYear: 1901,
-        //        maxYear: parseInt(moment().format('YYYY'), 10)
-        //    }, function (start, end, label) {
-        //        var years = moment().diff(start, 'years');
-        //    });
-        //});
+            //$(function () {
+            //    $('input[name="NgayTao"]').daterangepicker({
+            //        singleDatePicker: true,
+            //        showDropdowns: true,
+            //        minYear: 1901,
+            //        maxYear: parseInt(moment().format('YYYY'), 10)
+            //    }, function (start, end, label) {
+            //        var years = moment().diff(start, 'years');
+            //    });
+            //});
 
     </script>
 }

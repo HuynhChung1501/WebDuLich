@@ -8,7 +8,7 @@ namespace WebDuLich.Areas.Admin.Models
 {
     public class MapPhanQuyen
     {
-        TestDataEntities2 db = new TestDataEntities2();
+        TestDataEntities db = new TestDataEntities();
         public string thongbao = "";
 
         public List<PhanQuyen> DanhSach()

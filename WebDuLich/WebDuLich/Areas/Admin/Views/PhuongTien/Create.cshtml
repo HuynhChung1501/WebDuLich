@@ -1,4 +1,4 @@
-﻿
+﻿@model List<WebDuLich.DB.LoaiPhuongTien>
 @{
     ViewBag.title = "Thêm mới nhà hàng";
     int stt = 1;
@@ -17,7 +17,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="/Home">Home</a></li>
-                    <li class="breadcrumb-item active">Thêm mới nhà hàng </li>
+                    <li class="breadcrumb-item active">Thêm mới phương tiện</li>
                 </ol>
             </div>
         </div>
@@ -46,11 +46,27 @@
                             </div>
                         </div>
                         <!-- /.card-header -->
-                        <form action="/Admin/NhaHang/Create" method="post">
+                        <form action="/Admin/PhuongTien/Create" method="post">
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="Ten">Tên nhà hàng</label>
-                                    <input type="text" name="Ten" class="form-control" id="Ten" placeholder="Nhập nhà hàng">
+                                    <label for="TenPhuongTien">Tên Phương tiện</label>
+                                    <select class="select2 w-100" name="IDPhuongTien">
+                                        @if (Model.Count > 0 && Model != null)
+                                        {
+                                            foreach (var item in Model)
+                                            {
+                                                <option value="@item.IDPhuongTien">@item.Ten</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ChoNgoi">Chỗ ngồi</label>
+                                    <input type="number" name="ChoNgoi" class="form-control" id="ChoNgoi" placeholder="Nhập số lượng chỗ ngồi">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Gia">Giá</label>
+                                    <input type="number" name="Gia" class="form-control" id="Gia" placeholder="Nhập giá">
                                 </div>
                                 <div class="form-group">
                                     <label for="HinhAnh" class="form-label">Hình Ảnh</label>
@@ -63,14 +79,6 @@
                                             <span class="input-group-text">Upload</span>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="DiaChi">Địa chỉ</label>
-                                    <input type="text" name="DiaChi" class="form-control" id="DiaChi" placeholder="Nhập địa chỉ">
-                                </div>
-                                <div class="form-group">
-                                    <label for="Gia">Giá</label>
-                                    <input type="text" name="Gia" class="form-control" id="Gia" placeholder="Nhập địa chỉ">
                                 </div>
                                 <div class="form-group">
                                     <label for="Noidung" class="form-label">Nội dung</label>

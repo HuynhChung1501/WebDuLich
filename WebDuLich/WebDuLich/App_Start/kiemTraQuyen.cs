@@ -13,7 +13,7 @@ namespace WebDuLich.App_Start
 {
     public class kiemTraQuyen : System.Web.Mvc.AuthorizeAttribute
     {
-        TestDataEntities2 db = new TestDataEntities2();
+        TestDataEntities db = new TestDataEntities();
         public string ChucNang { get; set; }
         public override void OnAuthorization(AuthorizationContext fillterContext)
         {

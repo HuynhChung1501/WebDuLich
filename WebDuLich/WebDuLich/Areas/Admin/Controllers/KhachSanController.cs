@@ -12,7 +12,7 @@ namespace WebDuLich.Areas.Admin.Controllers
     [kiemTraQuyen]
     public class KhachSanController : Controller
     {
-        TestDataEntities2 db = new TestDataEntities2();
+        TestDataEntities db = new TestDataEntities();
 
         [kiemTraQuyen(ChucNang= "KS_XemDS")]
         // GET: Admin/NhaHang

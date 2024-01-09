@@ -71,6 +71,8 @@
                                         <th>Họ & tên</th>
                                         <th>Số điện thoại </th>
                                         <th>Trạng thái hoạt động </th>
+                                        <th>Ngày tạo</th>
+                                        <th>Người tạo</th>
                                         <th>Thao tác</th>
                                     </tr>
                                 </thead>
@@ -99,6 +101,8 @@
                                                     }
                                                 }
                                             </td>
+                                            <td>@item.NgayTao</td>
+                                            <td>@item.NguoiTao</td>
                                             <td>
                                                 <a class="btn btn-sm btn-outline-info" href="/Admin/TaiKhoan/Update?userName=@item.UserName"><i class="fas fa-pen"></i></a>
                                                 <a class="btn btn-sm btn-outline-danger quickDelete" onclick="handlerConfirm('/Admin/TaiKhoan/Delete?userName=@item.UserName')"><i class="fas fa-trash"></i></a>

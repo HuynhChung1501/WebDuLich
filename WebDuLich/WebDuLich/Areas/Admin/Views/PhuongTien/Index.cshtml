@@ -1,8 +1,10 @@
-﻿@model List<WebDuLich.DB.NhaHang>
+﻿@model List<WebDuLich.DB.PhuongTien>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
     int stt = 1;
+
+    List<WebDuLich.DB.LoaiPhuongTien> loaiPhuongTiens = new WebDuLich.Areas.Admin.Models.MapPhuongTien().DanhSachLoaiPhuongTien();
 }
 <!-- Content Header (Page header) -->
 <section class="content-header">
@@ -14,7 +16,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="/Home">Home</a></li>
-                    <li class="breadcrumb-item active">Danh sách nhà hàng</li>
+                    <li class="breadcrumb-item active">Danh sách phương tiện</li>
                 </ol>
             </div>
         </div>
@@ -30,7 +32,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <a href="/Admin/NhaHang/Create" class="btn btn-primary">Thêm mới</a>
+                            <a href="/Admin/PhuongTien/Create" class="btn btn-primary">Thêm mới</a>
 
                             <div class="card-tools">
                                 <div class="input-group input-group-sm" style="width: 150px;">
@@ -50,14 +52,13 @@
                                 <thead>
                                     <tr>
                                         <th>STT</th>
-                                        <th>Tên nhà hàng</th>
-                                        <th>Hình ảnh</th>
+                                        <th>Tên phương tiện</th>
+                                        <th>Chỗ ngỗi</th>
                                         <th>Giá </th>
-                                        <th>Địa chỉ</th>
-                                        <th>Nội dung</th>
+                                        <th>Hình ảnh</th>
                                         <th>Ngày tạo</th>
                                         <th>Người tạo</th>
-                                        <th>Chức năng</th>
+                                        <th>Nội dung</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -67,18 +68,26 @@
                                         {
                                             <tr>
                                                 <td>@stt</td>
-                                                <td>@item.Ten</td>
+                                                <td>
+                                                    @foreach (var phuongTien in loaiPhuongTiens)
+                                                    {
+                                                        if (item.IDPhuongTien == phuongTien.IDPhuongTien)
+                                                        {
+                                                            @phuongTien.Ten
+                                                        }
+                                                    }
+                                                </td>
+                                                <td>@item.ChoNgoi </td>
+                                                <td>@item.Gia</td>
                                                 <td>
                                                     <img src="@item.HinhAnh" style="border-radius: 50%" width="60" heihgt="60" />
                                                 </td>
-                                                <td>@item.Gia</td>
-                                                <td>@item.DiaChi</td>
                                                 <td>@Html.Raw(@item.NoiDung)</td>
                                                 <td>@item.NgayTao</td>
                                                 <td>@item.NguoiTao</td>
                                                 <td>
-                                                    <a class="btn btn-sm btn-outline-info" href="/Admin/NhaHang/Update?id=@item.ID"><i class="fas fa-pen"></i></a>
-                                                    <a class="btn btn-sm btn-outline-danger quickDelete" onclick="handlerConfirm('/Admin/NhaHang/Delete?id=@item.ID')"><i class="fas fa-trash"></i></a>
+                                                    <a class="btn btn-sm btn-outline-info" href="/Admin/PhuongTien/Update?id=@item.ID"><i class="fas fa-pen"></i></a>
+                                                    <a class="btn btn-sm btn-outline-danger quickDelete" onclick="handlerConfirm('/Admin/PhuongTien/Delete?id=@item.ID')"><i class="fas fa-trash"></i></a>
                                                 </td>
                                             </tr>
                                             stt++;

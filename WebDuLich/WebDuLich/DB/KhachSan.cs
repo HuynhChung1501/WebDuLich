@@ -26,6 +26,8 @@ namespace WebDuLich.DB
         public string Noidung { get; set; }
         public Nullable<decimal> Gia { get; set; }
         public string HinhAnh { get; set; }
+        public Nullable<System.DateTime> NgayTao { get; set; }
+        public string NguoiTao { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tour> Tours { get; set; }

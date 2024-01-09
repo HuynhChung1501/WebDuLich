@@ -1,4 +1,4 @@
-﻿@model List<WebDuLich.DB.NhaHang>
+﻿@model List<WebDuLich.DB.KhachSan>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -30,7 +30,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <a href="/Admin/NhaHang/Create" class="btn btn-primary">Thêm mới</a>
+                            <a href="/Admin/KhachSan/Create" class="btn btn-primary">Thêm mới</a>
 
                             <div class="card-tools">
                                 <div class="input-group input-group-sm" style="width: 150px;">
@@ -73,12 +73,12 @@
                                                 </td>
                                                 <td>@item.Gia</td>
                                                 <td>@item.DiaChi</td>
-                                                <td>@Html.Raw(@item.NoiDung)</td>
+                                                <td>@Html.Raw(@item.Noidung)</td>
                                                 <td>@item.NgayTao</td>
                                                 <td>@item.NguoiTao</td>
                                                 <td>
-                                                    <a class="btn btn-sm btn-outline-info" href="/Admin/NhaHang/Update?id=@item.ID"><i class="fas fa-pen"></i></a>
-                                                    <a class="btn btn-sm btn-outline-danger quickDelete" onclick="handlerConfirm('/Admin/NhaHang/Delete?id=@item.ID')"><i class="fas fa-trash"></i></a>
+                                                    <a class="btn btn-sm btn-outline-info" href="/Admin/KhachSan/Update?id=@item.ID"><i class="fas fa-pen"></i></a>
+                                                    <a class="btn btn-sm btn-outline-danger quickDelete" onclick="handlerConfirm('/Admin/KhachSan/Delete?id=@item.ID')"><i class="fas fa-trash"></i></a>
                                                 </td>
                                             </tr>
                                             stt++;

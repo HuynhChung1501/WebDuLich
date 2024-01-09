@@ -26,6 +26,8 @@ namespace WebDuLich.DB
         public string SoDienThoai { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public string Avatar { get; set; }
+        public Nullable<System.DateTime> NgayTao { get; set; }
+        public string NguoiTao { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhanQuyen> PhanQuyens { get; set; }

@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.title = "Thêm mới nhà hàng";
+    ViewBag.title = "Thêm mới khách sạn";
     int stt = 1;
     var user = (WebDuLich.DB.User)System.Web.HttpContext.Current.Session["user"];
 
@@ -17,7 +17,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="/Home">Home</a></li>
-                    <li class="breadcrumb-item active">Thêm mới nhà hàng </li>
+                    <li class="breadcrumb-item active">Thêm mới khách sạn</li>
                 </ol>
             </div>
         </div>
@@ -49,8 +49,8 @@
                         <form action="/Admin/NhaHang/Create" method="post">
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="Ten">Tên nhà hàng</label>
-                                    <input type="text" name="Ten" class="form-control" id="Ten" placeholder="Nhập nhà hàng">
+                                    <label for="Ten">Tên khách sạn</label>
+                                    <input type="text" name="Ten" class="form-control" id="Ten" placeholder="Nhập khách sạn">
                                 </div>
                                 <div class="form-group">
                                     <label for="HinhAnh" class="form-label">Hình Ảnh</label>

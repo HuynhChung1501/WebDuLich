@@ -8,7 +8,7 @@ namespace WebDuLich.Areas.Admin.Models
 {
     public class MapDiaDiem
     {
-        TestDataEntities2 db = new TestDataEntities2();
+        TestDataEntities db = new TestDataEntities();
 
         public List<DiaDiem> DanhSach()
         {

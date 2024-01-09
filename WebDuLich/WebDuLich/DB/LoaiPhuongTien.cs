@@ -12,17 +12,9 @@ namespace WebDuLich.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class HoSoCongTy
+    public partial class LoaiPhuongTien
     {
-        public int ID { get; set; }
+        public int IDPhuongTien { get; set; }
         public string Ten { get; set; }
-        public string DienThoai { get; set; }
-        public string Email { get; set; }
-        public string GioiThieu { get; set; }
-        public string DiaChi { get; set; }
-        public string Logo { get; set; }
-        public string Maso { get; set; }
-        public Nullable<System.DateTime> NgayTao { get; set; }
-        public string NguoiTao { get; set; }
     }
 }

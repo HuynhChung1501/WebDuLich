@@ -15,10 +15,12 @@ namespace WebDuLich.DB
     public partial class PhuongTien
     {
         public int ID { get; set; }
-        public string TenPhuongTien { get; set; }
         public Nullable<int> ChoNgoi { get; set; }
         public Nullable<decimal> Gia { get; set; }
         public string HinhAnh { get; set; }
         public string NoiDung { get; set; }
+        public Nullable<int> IDPhuongTien { get; set; }
+        public Nullable<System.DateTime> NgayTao { get; set; }
+        public string NguoiTao { get; set; }
     }
 }

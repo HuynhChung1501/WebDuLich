@@ -5,6 +5,9 @@
 
     var khacSans = Model.khachSans;
     var diaDiems = Model.diaDiems;
+
+    var user = (WebDuLich.DB.User)System.Web.HttpContext.Current.Session["user"];
+
 }
 
 
@@ -75,6 +78,7 @@
                                     <label for="GiaMoi">Giá mới</label>
                                     <input type="number" name="GiaMoi" class="form-control" id="GiaMoi" placeholder="Nhập tên giá mới">
                                 </div>
+
                                 <div class="form-group">
                                     <label for="NoiDung" class="form-label">Nội dung</label>
                                     <textarea class="form-control" name="BaiViet" id="txtBaiViet"></textarea>
@@ -102,6 +106,14 @@
                                             }
                                         }
                                     </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="NgayTao">Ngày tạo</label>
+                                    <input type="text" name="NgayTao" class="form-control" readonly id="NgayTao" value="@DateTime.Now">
+                                </div>
+                                <div class="form-group">
+                                    <label for="NguoiTao">Người tạo</label>
+                                    <input type="text" name="NguoiTao" class="form-control" readonly id="NguoiTao" value='@(user.UserName != null ? user.UserName : "")'>
                                 </div>
                             </div>
                             <div class="card-footer text-right">
@@ -139,16 +151,16 @@
         }
 
         $('.select2').select2()
-            //$(function () {
-            //    $('input[name="NgayTao"]').daterangepicker({
-            //        singleDatePicker: true,
-            //        showDropdowns: true,
-            //        minYear: 1901,
-            //        maxYear: parseInt(moment().format('YYYY'), 10)
-            //    }, function (start, end, label) {
-            //        var years = moment().diff(start, 'years');
-            //    });
+        $(function () {
+            //$('input[name="NgayTao"]').daterangepicker({
+            //    singleDatePicker: true,
+            //    showDropdowns: true,
+            //    minYear: 1901,
+            //    maxYear: parseInt(moment().format('YYYY'), 10)
+            //}, function (start, end, label) {
+            //    var years = moment().diff(start, 'years');
             //});
+        });
 
     </script>
 }

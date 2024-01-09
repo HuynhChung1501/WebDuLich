@@ -23,6 +23,8 @@ namespace WebDuLich.DB
         public string DiemDen { get; set; }
         public Nullable<int> IDDiaDiem { get; set; }
         public Nullable<int> IDKhachSan { get; set; }
+        public Nullable<System.DateTime> NgayTao { get; set; }
+        public string NguoiTao { get; set; }
     
         public virtual DiaDiem DiaDiem { get; set; }
         public virtual KhachSan KhachSan { get; set; }

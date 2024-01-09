@@ -14,6 +14,8 @@
           <Property Name="NguoiDang" Type="nvarchar" MaxLength="150" />
           <Property Name="ThoiGian" Type="datetime" />
           <Property Name="MoTa" Type="nvarchar(max)" />
+          <Property Name="NgayTao" Type="datetime" />
+          <Property Name="NguoiTao" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="ChucNang">
           <Key>
@@ -64,6 +66,8 @@
           <Property Name="DiaChi" Type="nvarchar" MaxLength="150" />
           <Property Name="Logo" Type="nvarchar" MaxLength="50" />
           <Property Name="Maso" Type="char" MaxLength="15" />
+          <Property Name="NgayTao" Type="datetime" />
+          <Property Name="NguoiTao" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="KhachSan">
           <Key>
@@ -75,6 +79,15 @@
           <Property Name="Noidung" Type="nvarchar(max)" />
           <Property Name="Gia" Type="decimal" Precision="18" Scale="0" />
           <Property Name="HinhAnh" Type="nvarchar" MaxLength="150" />
+          <Property Name="NgayTao" Type="datetime" />
+          <Property Name="NguoiTao" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="LoaiPhuongTien">
+          <Key>
+            <PropertyRef Name="IDPhuongTien" />
+          </Key>
+          <Property Name="IDPhuongTien" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ten" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="NhaHang">
           <Key>
@@ -86,6 +99,8 @@
           <Property Name="Gia" Type="decimal" Precision="18" Scale="3" />
           <Property Name="DiaChi" Type="nvarchar" MaxLength="200" />
           <Property Name="NoiDung" Type="nvarchar(max)" />
+          <Property Name="NgayTao" Type="datetime" />
+          <Property Name="NguoiTao" Type="nvarchar" MaxLength="150" />
         </EntityType>
         <EntityType Name="PhanQuyen">
           <Key>
@@ -101,11 +116,13 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TenPhuongTien" Type="nvarchar" MaxLength="250" />
           <Property Name="ChoNgoi" Type="int" />
           <Property Name="Gia" Type="decimal" Precision="18" Scale="3" />
-          <Property Name="HinhAnh" Type="nvarchar" MaxLength="150" />
-          <Property Name="NoiDung" Type="nvarchar(max)" />
+          <Property Name="HinhAnh" Type="nvarchar(max)" />
+          <Property Name="NoiDung" Type="nvarchar" MaxLength="150" />
+          <Property Name="IDPhuongTien" Type="int" />
+          <Property Name="NgayTao" Type="datetime" />
+          <Property Name="NguoiTao" Type="nvarchar" MaxLength="150" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -130,17 +147,21 @@
           <Property Name="DiemDen" Type="nvarchar" MaxLength="250" />
           <Property Name="IDDiaDiem" Type="int" />
           <Property Name="IDKhachSan" Type="int" />
+          <Property Name="NgayTao" Type="datetime" />
+          <Property Name="NguoiTao" Type="nvarchar" MaxLength="150" />
         </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="UserName" />
           </Key>
           <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Password" Type="text" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
           <Property Name="FullName" Type="nvarchar" MaxLength="50" />
           <Property Name="SoDienThoai" Type="varchar" MaxLength="20" />
           <Property Name="IsActive" Type="bit" />
           <Property Name="Avatar" Type="nvarchar(max)" />
+          <Property Name="NgayTao" Type="datetime" />
+          <Property Name="NguoiTao" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <Association Name="FK_HinhAnh_AlbumAnh">
           <End Role="AlbumAnh" Type="Self.AlbumAnh" Multiplicity="0..1" />
@@ -214,6 +235,7 @@
           <EntitySet Name="HinhAnh" EntityType="Self.HinhAnh" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HoSoCongTy" EntityType="Self.HoSoCongTy" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KhachSan" EntityType="Self.KhachSan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoaiPhuongTien" EntityType="Self.LoaiPhuongTien" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NhaHang" EntityType="Self.NhaHang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PhanQuyen" EntityType="Self.PhanQuyen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PhuongTien" EntityType="Self.PhuongTien" Schema="dbo" store:Type="Tables" />
@@ -245,41 +267,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TestDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="TestDataEntities2" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="AlbumAnhs" EntityType="TestDataModel.AlbumAnh" />
-          <EntitySet Name="ChucNangs" EntityType="TestDataModel.ChucNang" />
-          <EntitySet Name="DiaDiems" EntityType="TestDataModel.DiaDiem" />
-          <EntitySet Name="GioiThieux" EntityType="TestDataModel.GioiThieu" />
-          <EntitySet Name="HinhAnhs" EntityType="TestDataModel.HinhAnh" />
-          <EntitySet Name="HoSoCongTies" EntityType="TestDataModel.HoSoCongTy" />
-          <EntitySet Name="KhachSans" EntityType="TestDataModel.KhachSan" />
-          <EntitySet Name="NhaHangs" EntityType="TestDataModel.NhaHang" />
-          <EntitySet Name="PhanQuyens" EntityType="TestDataModel.PhanQuyen" />
-          <EntitySet Name="PhuongTiens" EntityType="TestDataModel.PhuongTien" />
-          <EntitySet Name="sysdiagrams" EntityType="TestDataModel.sysdiagram" />
-          <EntitySet Name="Tours" EntityType="TestDataModel.Tour" />
-          <EntitySet Name="Users" EntityType="TestDataModel.User" />
-          <AssociationSet Name="FK_HinhAnh_AlbumAnh" Association="TestDataModel.FK_HinhAnh_AlbumAnh">
-            <End Role="AlbumAnh" EntitySet="AlbumAnhs" />
-            <End Role="HinhAnh" EntitySet="HinhAnhs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PhanQuyen_ChucNang" Association="TestDataModel.FK_PhanQuyen_ChucNang">
-            <End Role="ChucNang" EntitySet="ChucNangs" />
-            <End Role="PhanQuyen" EntitySet="PhanQuyens" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Tour_DiaDiem1" Association="TestDataModel.FK_Tour_DiaDiem1">
-            <End Role="DiaDiem" EntitySet="DiaDiems" />
-            <End Role="Tour" EntitySet="Tours" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Tour_KhachSan1" Association="TestDataModel.FK_Tour_KhachSan1">
-            <End Role="KhachSan" EntitySet="KhachSans" />
-            <End Role="Tour" EntitySet="Tours" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PhanQuyen_User" Association="TestDataModel.FK_PhanQuyen_User">
-            <End Role="User" EntitySet="Users" />
-            <End Role="PhanQuyen" EntitySet="PhanQuyens" />
-          </AssociationSet>
-        </EntityContainer>
         <EntityType Name="AlbumAnh">
           <Key>
             <PropertyRef Name="ID" />
@@ -289,16 +276,18 @@
           <Property Name="NguoiDang" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="ThoiGian" Type="DateTime" Precision="3" />
           <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="HinhAnhs" Relationship="TestDataModel.FK_HinhAnh_AlbumAnh" FromRole="AlbumAnh" ToRole="HinhAnh" />
+          <NavigationProperty Name="HinhAnhs" Relationship="Self.FK_HinhAnh_AlbumAnh" FromRole="AlbumAnh" ToRole="HinhAnh" />
+          <Property Name="NgayTao" Type="DateTime" Precision="3" />
+          <Property Name="NguoiTao" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="ChucNang">
           <Key>
             <PropertyRef Name="MaChucNang" />
           </Key>
-          <Property Name="MaChucNang" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="MaChucNang" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="NhomChucNang" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="TenChucNang" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="PhanQuyens" Relationship="TestDataModel.FK_PhanQuyen_ChucNang" FromRole="ChucNang" ToRole="PhanQuyen" />
+          <NavigationProperty Name="PhanQuyens" Relationship="Self.FK_PhanQuyen_ChucNang" FromRole="ChucNang" ToRole="PhanQuyen" />
         </EntityType>
         <EntityType Name="DiaDiem">
           <Key>
@@ -307,7 +296,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Ten" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="NoiDung" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Tours" Relationship="TestDataModel.FK_Tour_DiaDiem1" FromRole="DiaDiem" ToRole="Tour" />
+          <NavigationProperty Name="Tours" Relationship="Self.FK_Tour_DiaDiem1" FromRole="DiaDiem" ToRole="Tour" />
         </EntityType>
         <EntityType Name="GioiThieu">
           <Key>
@@ -329,7 +318,7 @@
           <Property Name="NguoiTao" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="NgayTao" Type="DateTime" Precision="3" />
           <Property Name="IdAlbum" Type="Int32" />
-          <NavigationProperty Name="AlbumAnh" Relationship="TestDataModel.FK_HinhAnh_AlbumAnh" FromRole="HinhAnh" ToRole="AlbumAnh" />
+          <NavigationProperty Name="AlbumAnh" Relationship="Self.FK_HinhAnh_AlbumAnh" FromRole="HinhAnh" ToRole="AlbumAnh" />
         </EntityType>
         <EntityType Name="HoSoCongTy">
           <Key>
@@ -343,6 +332,8 @@
           <Property Name="DiaChi" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="Logo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Maso" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="NgayTao" Type="DateTime" Precision="3" />
+          <Property Name="NguoiTao" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="KhachSan">
           <Key>
@@ -354,7 +345,9 @@
           <Property Name="Noidung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Gia" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="HinhAnh" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Tours" Relationship="TestDataModel.FK_Tour_KhachSan1" FromRole="KhachSan" ToRole="Tour" />
+          <NavigationProperty Name="Tours" Relationship="Self.FK_Tour_KhachSan1" FromRole="KhachSan" ToRole="Tour" />
+          <Property Name="NgayTao" Type="DateTime" Precision="3" />
+          <Property Name="NguoiTao" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="NhaHang">
           <Key>
@@ -366,34 +359,38 @@
           <Property Name="Gia" Type="Decimal" Precision="18" Scale="3" />
           <Property Name="DiaChi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NgayTao" Type="DateTime" Precision="3" />
+          <Property Name="NguoiTao" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="PhanQuyen">
           <Key>
             <PropertyRef Name="UserName" />
             <PropertyRef Name="MaChucNang" />
           </Key>
-          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="MaChucNang" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MaChucNang" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="GhiChu" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ChucNang" Relationship="TestDataModel.FK_PhanQuyen_ChucNang" FromRole="PhanQuyen" ToRole="ChucNang" />
-          <NavigationProperty Name="User" Relationship="TestDataModel.FK_PhanQuyen_User" FromRole="PhanQuyen" ToRole="User" />
+          <NavigationProperty Name="ChucNang" Relationship="Self.FK_PhanQuyen_ChucNang" FromRole="PhanQuyen" ToRole="ChucNang" />
+          <NavigationProperty Name="User" Relationship="Self.FK_PhanQuyen_User" FromRole="PhanQuyen" ToRole="User" />
         </EntityType>
         <EntityType Name="PhuongTien">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TenPhuongTien" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="ChoNgoi" Type="Int32" />
           <Property Name="Gia" Type="Decimal" Precision="18" Scale="3" />
-          <Property Name="HinhAnh" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HinhAnh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NoiDung" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="IDPhuongTien" Type="Int32" />
+          <Property Name="NgayTao" Type="DateTime" Precision="3" />
+          <Property Name="NguoiTao" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="principal_id" Type="Int32" Nullable="false" />
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
@@ -412,24 +409,28 @@
           <Property Name="DiemDen" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="IDDiaDiem" Type="Int32" />
           <Property Name="IDKhachSan" Type="Int32" />
-          <NavigationProperty Name="DiaDiem" Relationship="TestDataModel.FK_Tour_DiaDiem1" FromRole="Tour" ToRole="DiaDiem" />
-          <NavigationProperty Name="KhachSan" Relationship="TestDataModel.FK_Tour_KhachSan1" FromRole="Tour" ToRole="KhachSan" />
+          <NavigationProperty Name="DiaDiem" Relationship="Self.FK_Tour_DiaDiem1" FromRole="Tour" ToRole="DiaDiem" />
+          <NavigationProperty Name="KhachSan" Relationship="Self.FK_Tour_KhachSan1" FromRole="Tour" ToRole="KhachSan" />
+          <Property Name="NgayTao" Type="DateTime" Precision="3" />
+          <Property Name="NguoiTao" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="UserName" />
           </Key>
-          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SoDienThoai" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="Avatar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="PhanQuyens" Relationship="TestDataModel.FK_PhanQuyen_User" FromRole="User" ToRole="PhanQuyen" />
+          <NavigationProperty Name="PhanQuyens" Relationship="Self.FK_PhanQuyen_User" FromRole="User" ToRole="PhanQuyen" />
+          <Property Name="NgayTao" Type="DateTime" Precision="3" />
+          <Property Name="NguoiTao" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_HinhAnh_AlbumAnh">
-          <End Type="TestDataModel.AlbumAnh" Role="AlbumAnh" Multiplicity="0..1" />
-          <End Type="TestDataModel.HinhAnh" Role="HinhAnh" Multiplicity="*" />
+          <End Role="AlbumAnh" Type="Self.AlbumAnh" Multiplicity="0..1" />
+          <End Role="HinhAnh" Type="Self.HinhAnh" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AlbumAnh">
               <PropertyRef Name="ID" />
@@ -440,10 +441,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PhanQuyen_ChucNang">
-          <End Type="TestDataModel.ChucNang" Role="ChucNang" Multiplicity="1">
+          <End Role="ChucNang" Type="Self.ChucNang" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="TestDataModel.PhanQuyen" Role="PhanQuyen" Multiplicity="*" />
+          <End Role="PhanQuyen" Type="Self.PhanQuyen" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ChucNang">
               <PropertyRef Name="MaChucNang" />
@@ -454,8 +455,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Tour_DiaDiem1">
-          <End Type="TestDataModel.DiaDiem" Role="DiaDiem" Multiplicity="0..1" />
-          <End Type="TestDataModel.Tour" Role="Tour" Multiplicity="*" />
+          <End Role="DiaDiem" Type="Self.DiaDiem" Multiplicity="0..1" />
+          <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DiaDiem">
               <PropertyRef Name="ID" />
@@ -466,8 +467,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Tour_KhachSan1">
-          <End Type="TestDataModel.KhachSan" Role="KhachSan" Multiplicity="0..1" />
-          <End Type="TestDataModel.Tour" Role="Tour" Multiplicity="*" />
+          <End Role="KhachSan" Type="Self.KhachSan" Multiplicity="0..1" />
+          <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="KhachSan">
               <PropertyRef Name="ID" />
@@ -478,10 +479,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PhanQuyen_User">
-          <End Type="TestDataModel.User" Role="User" Multiplicity="1">
+          <End Role="User" Type="Self.User" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="TestDataModel.PhanQuyen" Role="PhanQuyen" Multiplicity="*" />
+          <End Role="PhanQuyen" Type="Self.PhanQuyen" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="UserName" />
@@ -491,158 +492,223 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        </Schema>
+        <EntityContainer Name="TestDataEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AlbumAnhs" EntityType="Self.AlbumAnh" />
+          <EntitySet Name="ChucNangs" EntityType="Self.ChucNang" />
+          <EntitySet Name="DiaDiems" EntityType="Self.DiaDiem" />
+          <EntitySet Name="GioiThieux" EntityType="Self.GioiThieu" />
+          <EntitySet Name="HinhAnhs" EntityType="Self.HinhAnh" />
+          <EntitySet Name="HoSoCongTies" EntityType="Self.HoSoCongTy" />
+          <EntitySet Name="KhachSans" EntityType="Self.KhachSan" />
+          <EntitySet Name="NhaHangs" EntityType="Self.NhaHang" />
+          <EntitySet Name="PhanQuyens" EntityType="Self.PhanQuyen" />
+          <EntitySet Name="PhuongTiens" EntityType="Self.PhuongTien" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Tours" EntityType="Self.Tour" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_HinhAnh_AlbumAnh" Association="Self.FK_HinhAnh_AlbumAnh">
+            <End Role="AlbumAnh" EntitySet="AlbumAnhs" />
+            <End Role="HinhAnh" EntitySet="HinhAnhs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhanQuyen_ChucNang" Association="Self.FK_PhanQuyen_ChucNang">
+            <End Role="ChucNang" EntitySet="ChucNangs" />
+            <End Role="PhanQuyen" EntitySet="PhanQuyens" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tour_DiaDiem1" Association="Self.FK_Tour_DiaDiem1">
+            <End Role="DiaDiem" EntitySet="DiaDiems" />
+            <End Role="Tour" EntitySet="Tours" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tour_KhachSan1" Association="Self.FK_Tour_KhachSan1">
+            <End Role="KhachSan" EntitySet="KhachSans" />
+            <End Role="Tour" EntitySet="Tours" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhanQuyen_User" Association="Self.FK_PhanQuyen_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="PhanQuyen" EntitySet="PhanQuyens" />
+          </AssociationSet>
+          <EntitySet Name="LoaiPhuongTiens" EntityType="TestDataModel.LoaiPhuongTien" />
+        </EntityContainer>
+        <EntityType Name="LoaiPhuongTien">
+          <Key>
+            <PropertyRef Name="IDPhuongTien" />
+          </Key>
+          <Property Name="IDPhuongTien" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ten" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="TestDataModelStoreContainer" CdmEntityContainer="TestDataEntities2">
+        <EntityContainerMapping StorageEntityContainer="TestDataModelStoreContainer" CdmEntityContainer="TestDataEntities">
           <EntitySetMapping Name="AlbumAnhs">
             <EntityTypeMapping TypeName="TestDataModel.AlbumAnh">
               <MappingFragment StoreEntitySet="AlbumAnh">
-                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
-                <ScalarProperty Name="ThoiGian" ColumnName="ThoiGian" />
-                <ScalarProperty Name="NguoiDang" ColumnName="NguoiDang" />
-                <ScalarProperty Name="TenAlbum" ColumnName="TenAlbum" />
+                <ScalarProperty Name="NguoiTao" ColumnName="NguoiTao" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TenAlbum" ColumnName="TenAlbum" />
+                <ScalarProperty Name="NguoiDang" ColumnName="NguoiDang" />
+                <ScalarProperty Name="ThoiGian" ColumnName="ThoiGian" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ChucNangs">
             <EntityTypeMapping TypeName="TestDataModel.ChucNang">
               <MappingFragment StoreEntitySet="ChucNang">
-                <ScalarProperty Name="TenChucNang" ColumnName="TenChucNang" />
-                <ScalarProperty Name="NhomChucNang" ColumnName="NhomChucNang" />
                 <ScalarProperty Name="MaChucNang" ColumnName="MaChucNang" />
+                <ScalarProperty Name="NhomChucNang" ColumnName="NhomChucNang" />
+                <ScalarProperty Name="TenChucNang" ColumnName="TenChucNang" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DiaDiems">
             <EntityTypeMapping TypeName="TestDataModel.DiaDiem">
               <MappingFragment StoreEntitySet="DiaDiem">
-                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
-                <ScalarProperty Name="Ten" ColumnName="Ten" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="GioiThieux">
             <EntityTypeMapping TypeName="TestDataModel.GioiThieu">
               <MappingFragment StoreEntitySet="GioiThieu">
-                <ScalarProperty Name="Noidung" ColumnName="Noidung" />
-                <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
-                <ScalarProperty Name="Ngay" ColumnName="Ngay" />
-                <ScalarProperty Name="Ten" ColumnName="Ten" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="Ngay" ColumnName="Ngay" />
+                <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
+                <ScalarProperty Name="Noidung" ColumnName="Noidung" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="HinhAnhs">
             <EntityTypeMapping TypeName="TestDataModel.HinhAnh">
               <MappingFragment StoreEntitySet="HinhAnh">
-                <ScalarProperty Name="IdAlbum" ColumnName="IdAlbum" />
-                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
-                <ScalarProperty Name="NguoiTao" ColumnName="NguoiTao" />
-                <ScalarProperty Name="Url" ColumnName="Url" />
-                <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="NguoiTao" ColumnName="NguoiTao" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+                <ScalarProperty Name="IdAlbum" ColumnName="IdAlbum" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="HoSoCongTies">
             <EntityTypeMapping TypeName="TestDataModel.HoSoCongTy">
               <MappingFragment StoreEntitySet="HoSoCongTy">
-                <ScalarProperty Name="Maso" ColumnName="Maso" />
-                <ScalarProperty Name="Logo" ColumnName="Logo" />
-                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
-                <ScalarProperty Name="GioiThieu" ColumnName="GioiThieu" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="DienThoai" ColumnName="DienThoai" />
-                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="NguoiTao" ColumnName="NguoiTao" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="DienThoai" ColumnName="DienThoai" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="GioiThieu" ColumnName="GioiThieu" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="Maso" ColumnName="Maso" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="KhachSans">
             <EntityTypeMapping TypeName="TestDataModel.KhachSan">
               <MappingFragment StoreEntitySet="KhachSan">
-                <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
-                <ScalarProperty Name="Gia" ColumnName="Gia" />
-                <ScalarProperty Name="Noidung" ColumnName="Noidung" />
-                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
-                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="NguoiTao" ColumnName="NguoiTao" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="Noidung" ColumnName="Noidung" />
+                <ScalarProperty Name="Gia" ColumnName="Gia" />
+                <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="NhaHangs">
             <EntityTypeMapping TypeName="TestDataModel.NhaHang">
               <MappingFragment StoreEntitySet="NhaHang">
-                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
-                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
-                <ScalarProperty Name="Gia" ColumnName="Gia" />
-                <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
-                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="NguoiTao" ColumnName="NguoiTao" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
+                <ScalarProperty Name="Gia" ColumnName="Gia" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PhanQuyens">
             <EntityTypeMapping TypeName="TestDataModel.PhanQuyen">
               <MappingFragment StoreEntitySet="PhanQuyen">
-                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
-                <ScalarProperty Name="MaChucNang" ColumnName="MaChucNang" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="MaChucNang" ColumnName="MaChucNang" />
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PhuongTiens">
             <EntityTypeMapping TypeName="TestDataModel.PhuongTien">
               <MappingFragment StoreEntitySet="PhuongTien">
-                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
-                <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
-                <ScalarProperty Name="Gia" ColumnName="Gia" />
-                <ScalarProperty Name="ChoNgoi" ColumnName="ChoNgoi" />
-                <ScalarProperty Name="TenPhuongTien" ColumnName="TenPhuongTien" />
+                <ScalarProperty Name="NguoiTao" ColumnName="NguoiTao" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ChoNgoi" ColumnName="ChoNgoi" />
+                <ScalarProperty Name="Gia" ColumnName="Gia" />
+                <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="IDPhuongTien" ColumnName="IDPhuongTien" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="TestDataModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
                 <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tours">
             <EntityTypeMapping TypeName="TestDataModel.Tour">
               <MappingFragment StoreEntitySet="Tour">
-                <ScalarProperty Name="IDKhachSan" ColumnName="IDKhachSan" />
-                <ScalarProperty Name="IDDiaDiem" ColumnName="IDDiaDiem" />
-                <ScalarProperty Name="DiemDen" ColumnName="DiemDen" />
-                <ScalarProperty Name="BaiViet" ColumnName="BaiViet" />
-                <ScalarProperty Name="GiaMoi" ColumnName="GiaMoi" />
-                <ScalarProperty Name="GiaCu" ColumnName="GiaCu" />
-                <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
-                <ScalarProperty Name="TenTour" ColumnName="TenTour" />
+                <ScalarProperty Name="NguoiTao" ColumnName="NguoiTao" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TenTour" ColumnName="TenTour" />
+                <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
+                <ScalarProperty Name="GiaCu" ColumnName="GiaCu" />
+                <ScalarProperty Name="GiaMoi" ColumnName="GiaMoi" />
+                <ScalarProperty Name="BaiViet" ColumnName="BaiViet" />
+                <ScalarProperty Name="DiemDen" ColumnName="DiemDen" />
+                <ScalarProperty Name="IDDiaDiem" ColumnName="IDDiaDiem" />
+                <ScalarProperty Name="IDKhachSan" ColumnName="IDKhachSan" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="TestDataModel.User">
               <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="NguoiTao" ColumnName="NguoiTao" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoaiPhuongTiens">
+            <EntityTypeMapping TypeName="TestDataModel.LoaiPhuongTien">
+              <MappingFragment StoreEntitySet="LoaiPhuongTien">
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="IDPhuongTien" ColumnName="IDPhuongTien" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
