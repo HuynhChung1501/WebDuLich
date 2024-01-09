@@ -25,6 +25,8 @@ namespace WebDuLich.DB
         public string NguoiDang { get; set; }
         public Nullable<System.DateTime> ThoiGian { get; set; }
         public string MoTa { get; set; }
+        public Nullable<System.DateTime> NgayTao { get; set; }
+        public string NguoiTao { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HinhAnh> HinhAnhs { get; set; }

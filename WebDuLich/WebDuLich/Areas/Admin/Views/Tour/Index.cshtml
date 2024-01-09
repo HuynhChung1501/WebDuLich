@@ -59,6 +59,8 @@
                                         <th>Bài viết</th>
                                         <th>Điểm đến</th>
                                         <th>Khách sạn</th>
+                                        <th>Ngày tạo</th>
+                                        <th>Người tạo</th>
                                         <th>Chức năng</th>
                                     </tr>
                                 </thead>
@@ -92,6 +94,8 @@
                                                     }
                                                 }
                                             </td>
+                                            <td>@item.NgayTao</td>
+                                            <td>@item.NguoiTao</td>
                                             <td>
                                                 <a class="btn btn-sm btn-outline-info" href="/Admin/Tour/Update?id=@item.ID"><i class="fas fa-pen"></i></a>
                                                 <a class="btn btn-sm btn-outline-danger quickDelete" onclick="handlerConfirm('/Admin/Tour/Delete?id=@item.ID')"><i class="fas fa-trash"></i></a>

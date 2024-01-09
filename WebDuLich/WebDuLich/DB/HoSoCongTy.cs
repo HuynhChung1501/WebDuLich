@@ -22,5 +22,7 @@ namespace WebDuLich.DB
         public string DiaChi { get; set; }
         public string Logo { get; set; }
         public string Maso { get; set; }
+        public Nullable<System.DateTime> NgayTao { get; set; }
+        public string NguoiTao { get; set; }
     }
 }

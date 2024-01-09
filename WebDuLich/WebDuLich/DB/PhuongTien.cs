@@ -20,5 +20,7 @@ namespace WebDuLich.DB
         public string HinhAnh { get; set; }
         public string NoiDung { get; set; }
         public Nullable<int> IDPhuongTien { get; set; }
+        public Nullable<System.DateTime> NgayTao { get; set; }
+        public string NguoiTao { get; set; }
     }
 }

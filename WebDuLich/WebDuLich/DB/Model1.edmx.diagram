@@ -5,13 +5,13 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="52e5f790ecae46169dd2f1d204d12702" Name="Diagram1">
-        <EntityTypeShape EntityType="TestDataModel.AlbumAnh" Width="1.5" PointX="7.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestDataModel.AlbumAnh" Width="1.5" PointX="12.375" PointY="3.375" IsExpanded="true" />
         <EntityTypeShape EntityType="TestDataModel.ChucNang" Width="1.5" PointX="5.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="TestDataModel.DiaDiem" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
         <EntityTypeShape EntityType="TestDataModel.GioiThieu" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TestDataModel.HinhAnh" Width="1.5" PointX="10" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestDataModel.HinhAnh" Width="1.5" PointX="10.125" PointY="3.375" IsExpanded="true" />
         <EntityTypeShape EntityType="TestDataModel.HoSoCongTy" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TestDataModel.KhachSan" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestDataModel.KhachSan" Width="1.5" PointX="0.625" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="TestDataModel.NhaHang" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TestDataModel.PhanQuyen" Width="1.5" PointX="8" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="TestDataModel.PhuongTien" Width="1.5" PointX="2.75" PointY="8.875" IsExpanded="true" />

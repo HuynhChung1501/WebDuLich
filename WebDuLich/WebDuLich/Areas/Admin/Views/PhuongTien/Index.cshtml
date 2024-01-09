@@ -56,6 +56,8 @@
                                         <th>Chỗ ngỗi</th>
                                         <th>Giá </th>
                                         <th>Hình ảnh</th>
+                                        <th>Ngày tạo</th>
+                                        <th>Người tạo</th>
                                         <th>Nội dung</th>
                                     </tr>
                                 </thead>
@@ -81,6 +83,8 @@
                                                     <img src="@item.HinhAnh" style="border-radius: 50%" width="60" heihgt="60" />
                                                 </td>
                                                 <td>@Html.Raw(@item.NoiDung)</td>
+                                                <td>@item.NgayTao</td>
+                                                <td>@item.NguoiTao</td>
                                                 <td>
                                                     <a class="btn btn-sm btn-outline-info" href="/Admin/PhuongTien/Update?id=@item.ID"><i class="fas fa-pen"></i></a>
                                                     <a class="btn btn-sm btn-outline-danger quickDelete" onclick="handlerConfirm('/Admin/PhuongTien/Delete?id=@item.ID')"><i class="fas fa-trash"></i></a>

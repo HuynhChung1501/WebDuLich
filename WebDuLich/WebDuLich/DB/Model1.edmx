@@ -14,6 +14,8 @@
           <Property Name="NguoiDang" Type="nvarchar" MaxLength="150" />
           <Property Name="ThoiGian" Type="datetime" />
           <Property Name="MoTa" Type="nvarchar(max)" />
+          <Property Name="NgayTao" Type="datetime" />
+          <Property Name="NguoiTao" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="ChucNang">
           <Key>
@@ -64,6 +66,8 @@
           <Property Name="DiaChi" Type="nvarchar" MaxLength="150" />
           <Property Name="Logo" Type="nvarchar" MaxLength="50" />
           <Property Name="Maso" Type="char" MaxLength="15" />
+          <Property Name="NgayTao" Type="datetime" />
+          <Property Name="NguoiTao" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="KhachSan">
           <Key>
@@ -75,6 +79,8 @@
           <Property Name="Noidung" Type="nvarchar(max)" />
           <Property Name="Gia" Type="decimal" Precision="18" Scale="0" />
           <Property Name="HinhAnh" Type="nvarchar" MaxLength="150" />
+          <Property Name="NgayTao" Type="datetime" />
+          <Property Name="NguoiTao" Type="nvarchar" MaxLength="150" />
         </EntityType>
         <EntityType Name="LoaiPhuongTien">
           <Key>
@@ -93,6 +99,8 @@
           <Property Name="Gia" Type="decimal" Precision="18" Scale="3" />
           <Property Name="DiaChi" Type="nvarchar" MaxLength="200" />
           <Property Name="NoiDung" Type="nvarchar(max)" />
+          <Property Name="NgayTao" Type="datetime" />
+          <Property Name="NguoiTao" Type="nvarchar" MaxLength="150" />
         </EntityType>
         <EntityType Name="PhanQuyen">
           <Key>
@@ -113,6 +121,8 @@
           <Property Name="HinhAnh" Type="nvarchar(max)" />
           <Property Name="NoiDung" Type="nvarchar" MaxLength="150" />
           <Property Name="IDPhuongTien" Type="int" />
+          <Property Name="NgayTao" Type="datetime" />
+          <Property Name="NguoiTao" Type="nvarchar" MaxLength="150" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -137,6 +147,8 @@
           <Property Name="DiemDen" Type="nvarchar" MaxLength="250" />
           <Property Name="IDDiaDiem" Type="int" />
           <Property Name="IDKhachSan" Type="int" />
+          <Property Name="NgayTao" Type="datetime" />
+          <Property Name="NguoiTao" Type="nvarchar" MaxLength="150" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -148,6 +160,8 @@
           <Property Name="SoDienThoai" Type="varchar" MaxLength="20" />
           <Property Name="IsActive" Type="bit" />
           <Property Name="Avatar" Type="nvarchar(max)" />
+          <Property Name="NgayTao" Type="datetime" />
+          <Property Name="NguoiTao" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <Association Name="FK_HinhAnh_AlbumAnh">
           <End Role="AlbumAnh" Type="Self.AlbumAnh" Multiplicity="0..1" />
@@ -263,6 +277,8 @@
           <Property Name="ThoiGian" Type="DateTime" Precision="3" />
           <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="HinhAnhs" Relationship="Self.FK_HinhAnh_AlbumAnh" FromRole="AlbumAnh" ToRole="HinhAnh" />
+          <Property Name="NgayTao" Type="DateTime" Precision="3" />
+          <Property Name="NguoiTao" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="ChucNang">
           <Key>
@@ -316,6 +332,8 @@
           <Property Name="DiaChi" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="Logo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Maso" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="NgayTao" Type="DateTime" Precision="3" />
+          <Property Name="NguoiTao" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="KhachSan">
           <Key>
@@ -328,6 +346,8 @@
           <Property Name="Gia" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="HinhAnh" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Tours" Relationship="Self.FK_Tour_KhachSan1" FromRole="KhachSan" ToRole="Tour" />
+          <Property Name="NgayTao" Type="DateTime" Precision="3" />
+          <Property Name="NguoiTao" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="NhaHang">
           <Key>
@@ -339,6 +359,8 @@
           <Property Name="Gia" Type="Decimal" Precision="18" Scale="3" />
           <Property Name="DiaChi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NgayTao" Type="DateTime" Precision="3" />
+          <Property Name="NguoiTao" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="PhanQuyen">
           <Key>
@@ -361,6 +383,8 @@
           <Property Name="HinhAnh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="NoiDung" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="IDPhuongTien" Type="Int32" />
+          <Property Name="NgayTao" Type="DateTime" Precision="3" />
+          <Property Name="NguoiTao" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -387,6 +411,8 @@
           <Property Name="IDKhachSan" Type="Int32" />
           <NavigationProperty Name="DiaDiem" Relationship="Self.FK_Tour_DiaDiem1" FromRole="Tour" ToRole="DiaDiem" />
           <NavigationProperty Name="KhachSan" Relationship="Self.FK_Tour_KhachSan1" FromRole="Tour" ToRole="KhachSan" />
+          <Property Name="NgayTao" Type="DateTime" Precision="3" />
+          <Property Name="NguoiTao" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -399,6 +425,8 @@
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="Avatar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="PhanQuyens" Relationship="Self.FK_PhanQuyen_User" FromRole="User" ToRole="PhanQuyen" />
+          <Property Name="NgayTao" Type="DateTime" Precision="3" />
+          <Property Name="NguoiTao" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_HinhAnh_AlbumAnh">
           <End Role="AlbumAnh" Type="Self.AlbumAnh" Multiplicity="0..1" />
@@ -516,6 +544,8 @@
           <EntitySetMapping Name="AlbumAnhs">
             <EntityTypeMapping TypeName="TestDataModel.AlbumAnh">
               <MappingFragment StoreEntitySet="AlbumAnh">
+                <ScalarProperty Name="NguoiTao" ColumnName="NguoiTao" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="TenAlbum" ColumnName="TenAlbum" />
                 <ScalarProperty Name="NguoiDang" ColumnName="NguoiDang" />
@@ -568,6 +598,8 @@
           <EntitySetMapping Name="HoSoCongTies">
             <EntityTypeMapping TypeName="TestDataModel.HoSoCongTy">
               <MappingFragment StoreEntitySet="HoSoCongTy">
+                <ScalarProperty Name="NguoiTao" ColumnName="NguoiTao" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Ten" ColumnName="Ten" />
                 <ScalarProperty Name="DienThoai" ColumnName="DienThoai" />
@@ -582,6 +614,8 @@
           <EntitySetMapping Name="KhachSans">
             <EntityTypeMapping TypeName="TestDataModel.KhachSan">
               <MappingFragment StoreEntitySet="KhachSan">
+                <ScalarProperty Name="NguoiTao" ColumnName="NguoiTao" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Ten" ColumnName="Ten" />
                 <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
@@ -594,6 +628,8 @@
           <EntitySetMapping Name="NhaHangs">
             <EntityTypeMapping TypeName="TestDataModel.NhaHang">
               <MappingFragment StoreEntitySet="NhaHang">
+                <ScalarProperty Name="NguoiTao" ColumnName="NguoiTao" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Ten" ColumnName="Ten" />
                 <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
@@ -615,6 +651,8 @@
           <EntitySetMapping Name="PhuongTiens">
             <EntityTypeMapping TypeName="TestDataModel.PhuongTien">
               <MappingFragment StoreEntitySet="PhuongTien">
+                <ScalarProperty Name="NguoiTao" ColumnName="NguoiTao" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ChoNgoi" ColumnName="ChoNgoi" />
                 <ScalarProperty Name="Gia" ColumnName="Gia" />
@@ -638,6 +676,8 @@
           <EntitySetMapping Name="Tours">
             <EntityTypeMapping TypeName="TestDataModel.Tour">
               <MappingFragment StoreEntitySet="Tour">
+                <ScalarProperty Name="NguoiTao" ColumnName="NguoiTao" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="TenTour" ColumnName="TenTour" />
                 <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
@@ -653,6 +693,8 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="TestDataModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="NguoiTao" ColumnName="NguoiTao" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="FullName" ColumnName="FullName" />
