@@ -1,0 +1,64 @@
+﻿@model WebDuLich.Models.ModelView.Tours.MapTourView
+@{
+    int stt = 1;
+    List<WebDuLich.DB.DiaDiem> diaDiems = Model.diaDiems;
+    List<WebDuLich.DB.KhachSan> khachSans = Model.khachSans;
+}
+
+<table class="table table-head-fixed text-nowrap">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Tên Tour</th>
+            <th>Hình Ảnh</th>
+            <th>Giá Cũ</th>
+            <th>Giá Mới</th>
+            <th>Bài viết</th>
+            <th>Điểm đến</th>
+            <th>Khách sạn</th>
+            <th>Ngày tạo</th>
+            <th>Người tạo</th>
+            <th>Chức năng</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.tours)
+        {
+            <tr>
+                <td>@stt</td>
+                <td>@item.TenTour</td>
+                <td>
+                    <img src="@item.HinhAnh" width="60" heihgt="60" />
+                </td>
+                <td>@item.GiaCu</td>
+                <td>@item.GiaMoi</td>
+                <td>@Html.Raw(@item.BaiViet)</td>
+                <td>
+                    @foreach (var diadiem in diaDiems)
+                    {
+                        if (diadiem.ID == item.IDDiaDiem)
+                        {
+                            @diadiem.Ten
+                        }
+                    }
+                </td>
+                <td>
+                    @foreach (var khachSan in khachSans)
+                    {
+                        if (khachSan.ID == item.IDKhachSan)
+                        {
+                            @khachSan.Ten
+                        }
+                    }
+                </td>
+                <td>@item.NgayTao</td>
+                <td>@item.NguoiTao</td>
+                <td>
+                    <a class="btn btn-sm btn-outline-info" href="/Admin/Tour/Update?id=@item.ID"><i class="fas fa-pen"></i></a>
+                    <a class="btn btn-sm btn-outline-danger quickDelete" onclick="handlerConfirm('/Admin/Tour/Delete?id=@item.ID')"><i class="fas fa-trash"></i></a>
+                </td>
+            </tr>
+            stt++;
+        }
+    </tbody>
+</table>
