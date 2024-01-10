@@ -101,5 +101,21 @@ namespace WebDuLich.Areas.Admin.Controllers
             return Redirect("/Admin/Tour");
         }
 
+        [HttpPost]
+        public ActionResult Timkiem(string table_search, int? IDDiadiem, int? IDKhachSan)
+        {
+            var model = new MapTour();
+            var tours = new MapTour().TimKiem(IDDiadiem, IDKhachSan);
+            List<DiaDiem> diadiems = model.DsDiaDiem();
+            List<KhachSan> khachsans = model.DsKhachSan();
+
+            return PartialView("_Detail", new MapTourView
+            {
+                tours = tours,
+                khachSans = khachsans,
+                diaDiems = diadiems,
+
+            });
+        }
     }
 }

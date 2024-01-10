@@ -21,13 +21,33 @@ namespace WebDuLich.Areas.Admin.Models
         {
             Tour tour = db.Tours.FirstOrDefault(n => n.ID == id);
 
-            if (tour == null)
+            if (tour != null)
             {
-                thongbao = "không tìm thấy Tour phù hợp";
-                return null;
+                return tour;
             }
-            return tour;
+            thongbao = "không tìm thấy Tour phù hợp";
+            return null;
         }
+
+        public List<Tour> TimKiem(int? IdDiaDIem, int? IDKhachSan) 
+        {
+            
+            if (IdDiaDIem == 0 && IDKhachSan == 0)
+            {
+                return db.Tours.ToList();
+            }
+            if(IdDiaDIem != null)
+            {
+                var tours = from t in db.Tours
+                            where (IdDiaDIem == 0 || t.IDDiaDiem == IdDiaDIem )
+                            where (IDKhachSan == 0 || t.IDKhachSan == IDKhachSan )
+                            select t;
+                return tours.ToList();
+            }
+            return null;
+        }
+
+
 
         public bool ThemMoi(Tour tour)
         {
