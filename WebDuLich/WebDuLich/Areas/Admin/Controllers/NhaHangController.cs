@@ -69,5 +69,11 @@ namespace WebDuLich.Areas.Admin.Controllers
             ViewBag.thongbao = new MapNhaHang().thongbao;
             return Redirect("/Admin/NhaHang");
         }
+
+        public ActionResult TimKiem(string searchName) 
+        {
+            List<NhaHang> nhaHangs = new MapNhaHang().TimKiem(searchName);
+            return PartialView("_Detail",nhaHangs);
+        }
     }
 }

@@ -1,0 +1,52 @@
+﻿@model List<WebDuLich.DB.NhaHang>
+@{
+    int stt = 1;
+}
+<table class="table table-head-fixed text-nowrap">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Tên nhà hàng</th>
+            <th>Hình ảnh</th>
+            <th>Giá </th>
+            <th>Địa chỉ</th>
+            <th>Nội dung</th>
+            <th>Ngày tạo</th>
+            <th>Người tạo</th>
+            <th>Chức năng</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@stt</td>
+                    <td>@item.Ten</td>
+                    <td>
+                        <img src="@item.HinhAnh" style="border-radius: 50%" width="60" heihgt="60" />
+                    </td>
+                    <td>@item.Gia</td>
+                    <td>@item.DiaChi</td>
+                    <td>@Html.Raw(@item.NoiDung)</td>
+                    <td>@item.NgayTao</td>
+                    <td>@item.NguoiTao</td>
+                    <td>
+                        <a class="btn btn-sm btn-outline-info" href="/Admin/NhaHang/Update?id=@item.ID"><i class="fas fa-pen"></i></a>
+                        <a class="btn btn-sm btn-outline-danger quickDelete" onclick="handlerConfirm('/Admin/NhaHang/Delete?id=@item.ID')"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+                stt++;
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="9">
+                    <span class="font-italic">Không có dự liệu</span>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

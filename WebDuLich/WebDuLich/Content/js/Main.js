@@ -7,6 +7,25 @@ var main = {
         
     },
     upEvent: function () {
+        // $('.quickSubmit').click(function (e) {
+        //     e.preventDefault();
+        //     var data = {}
+        //     var oj = $(this).closest(".formSubmit")
+        //     var jsondata = {};
+        //     var jsondata = utils.getSerialize(oj)
+
+            
+        //     $.ajax({
+        //         url: '/Admin/Tour/Timkiem',
+        //         type: 'post',
+        //         data: jsondata,
+        //         datatype: 'json',
+        //         success: function (jsondata) {
+        //             $("#tableForm").html(jsondata);
+        //             // alert(data.status)
+        //         },
+        //     });
+        // });
         $('.quickSubmit').click(function (e) {
             e.preventDefault();
             var data = {}
@@ -14,9 +33,9 @@ var main = {
             var jsondata = {};
             var jsondata = utils.getSerialize(oj)
 
-            console.log(jsondata);
+
             $.ajax({
-                url: '/Admin/Tour/Timkiem',
+                url: '/Admin/NhaHang/TimKiem',
                 type: 'post',
                 data: jsondata,
                 datatype: 'json',

@@ -92,5 +92,20 @@ namespace WebDuLich.Areas.Admin.Models
 
         }
 
+
+
+        public List<NhaHang> TimKiem(string searchName)
+        {
+            if (string.IsNullOrEmpty(searchName))
+            {
+                return db.NhaHangs.ToList();
+            }
+            
+            var nhaHangs = from nh in db.NhaHangs
+                            where nh.Ten.ToLowerInvariant().Contains(searchName.ToLowerInvariant()) || nh.DiaChi.ToLowerInvariant().Contains(searchName.ToLowerInvariant())
+                           select nh;
+            return nhaHangs.ToList();
+        }
+
     }
 }

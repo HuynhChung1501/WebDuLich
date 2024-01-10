@@ -47,8 +47,6 @@ namespace WebDuLich.Areas.Admin.Models
             return null;
         }
 
-
-
         public bool ThemMoi(Tour tour)
         {
             if (tour != null)
