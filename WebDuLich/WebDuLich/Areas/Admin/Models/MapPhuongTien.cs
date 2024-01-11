@@ -1,8 +1,12 @@
-﻿using System;
+﻿using Antlr.Runtime.Misc;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Xml.Linq;
 using WebDuLich.DB;
+using WebDuLich.Models.ModelView.PhuongTiens;
 
 namespace WebDuLich.Areas.Admin.Models
 {
@@ -10,12 +14,6 @@ namespace WebDuLich.Areas.Admin.Models
     {
         TestDataEntities db = new TestDataEntities();
         public string thongbao = "";
-
-        public List<PhuongTien> DanhSach()
-        {
-            List<PhuongTien> PhuongTiens = db.PhuongTiens.ToList();
-            return PhuongTiens;
-        }
 
         public List<LoaiPhuongTien> DanhSachLoaiPhuongTien()
         {
@@ -96,6 +94,49 @@ namespace WebDuLich.Areas.Admin.Models
             }
             return false;
 
+        }
+
+        public List<MapDBPhuongTien> DanhSach(int? IDPhuongTien, int? IDMucGia)
+        {
+
+            var phuongTiens = from item in db.PhuongTiens
+                              from LPhuongTien in db.LoaiPhuongTiens
+                              where (LPhuongTien.IDPhuongTien == IDPhuongTien || IDPhuongTien == 0) && item.IDPhuongTien == LPhuongTien.IDPhuongTien
+                              select new MapDBPhuongTien
+                              {
+                                  ID = item.ID,
+                                  ChoNgoi = item.ChoNgoi,
+                                  Gia = (int)item.Gia,
+                                  HinhAnh = item.HinhAnh,
+                                  NoiDung = item.NoiDung,
+                                  IDPhuongTien = (int)LPhuongTien.IDPhuongTien,
+                                  NgayTao = item.NgayTao,
+                                  NguoiTao = item.NguoiTao,
+                                  TenPhuongTien = LPhuongTien.Ten
+                              };
+
+
+            switch (IDMucGia)
+            {
+                case 0:
+                    break;
+
+                case 1:
+                    phuongTiens = phuongTiens.Where(n => n.Gia < 1000);
+                    break;
+                case 2:
+                    phuongTiens = phuongTiens.Where(n => n.Gia >= 1000 && n.Gia < 6000);
+                    break;
+                case 3:
+                    phuongTiens = phuongTiens.Where(n => n.Gia >= 6000 && n.Gia < 11000);
+                    break;
+                case 4:
+                    phuongTiens = phuongTiens.Where(n => n.Gia >= 11000);
+                    break;
+            }
+
+
+            return phuongTiens.ToList();
         }
 
     }
