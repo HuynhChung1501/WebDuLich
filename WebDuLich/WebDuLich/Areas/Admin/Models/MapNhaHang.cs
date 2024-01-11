@@ -92,8 +92,6 @@ namespace WebDuLich.Areas.Admin.Models
 
         }
 
-
-
         public List<NhaHang> TimKiem(string searchName)
         {
             if (string.IsNullOrEmpty(searchName))

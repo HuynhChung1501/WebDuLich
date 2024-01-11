@@ -1,0 +1,49 @@
+﻿@using WebDuLich.DB
+@model WebDuLich.Models.ModelView.KhachSans.MapKhachSanView
+@{
+    int stt = 1;
+
+    List<KhachSan> khachSans = Model.DSKhachSans;
+}
+<!-- Content Header (Page header) -->
+<table class="table table-head-fixed text-nowrap">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Tên nhà hàng</th>
+            <th>Hình ảnh</th>
+            <th>Giá </th>
+            <th>Địa chỉ</th>
+            <th>Nội dung</th>
+            <th>Ngày tạo</th>
+            <th>Người tạo</th>
+            <th>Chức năng</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            foreach (var item in khachSans)
+            {
+                <tr>
+                    <td>@stt</td>
+                    <td>@item.Ten</td>
+                    <td>
+                        <img src="@item.HinhAnh" style="border-radius: 50%" width="60" heihgt="60" />
+                    </td>
+                    <td>@item.Gia</td>
+                    <td>@item.DiaChi</td>
+                    <td>@Html.Raw(@item.Noidung)</td>
+                    <td>@item.NgayTao</td>
+                    <td>@item.NguoiTao</td>
+                    <td>
+                        <a class="btn btn-sm btn-outline-info" href="/Admin/KhachSan/Update?id=@item.ID"><i class="fas fa-pen"></i></a>
+                        <a class="btn btn-sm btn-outline-danger quickDelete" onclick="handlerConfirm('/Admin/KhachSan/Delete?id=@item.ID')"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+                stt++;
+            }
+        }
+    </tbody>
+</table>
+</div>

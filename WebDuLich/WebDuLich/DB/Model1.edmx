@@ -89,6 +89,14 @@
           <Property Name="IDPhuongTien" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Ten" Type="nvarchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="MucGia">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MucGia" Type="nvarchar" MaxLength="50" />
+          <Property Name="MoTa" Type="nvarchar" MaxLength="500" />
+        </EntityType>
         <EntityType Name="NhaHang">
           <Key>
             <PropertyRef Name="ID" />
@@ -96,7 +104,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Ten" Type="nvarchar" MaxLength="150" />
           <Property Name="HinhAnh" Type="nvarchar(max)" />
-          <Property Name="Gia" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="Gia" Type="decimal" Precision="18" Scale="0" />
           <Property Name="DiaChi" Type="nvarchar" MaxLength="200" />
           <Property Name="NoiDung" Type="nvarchar(max)" />
           <Property Name="NgayTao" Type="datetime" />
@@ -117,7 +125,7 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ChoNgoi" Type="int" />
-          <Property Name="Gia" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="Gia" Type="decimal" Precision="18" Scale="0" />
           <Property Name="HinhAnh" Type="nvarchar(max)" />
           <Property Name="NoiDung" Type="nvarchar" MaxLength="150" />
           <Property Name="IDPhuongTien" Type="int" />
@@ -141,8 +149,8 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TenTour" Type="nvarchar" MaxLength="250" />
           <Property Name="HinhAnh" Type="nvarchar(max)" />
-          <Property Name="GiaCu" Type="decimal" Precision="18" Scale="3" />
-          <Property Name="GiaMoi" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="GiaCu" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="GiaMoi" Type="decimal" Precision="18" Scale="0" />
           <Property Name="BaiViet" Type="nvarchar(max)" />
           <Property Name="DiemDen" Type="nvarchar" MaxLength="250" />
           <Property Name="IDDiaDiem" Type="int" />
@@ -236,6 +244,7 @@
           <EntitySet Name="HoSoCongTy" EntityType="Self.HoSoCongTy" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KhachSan" EntityType="Self.KhachSan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoaiPhuongTien" EntityType="Self.LoaiPhuongTien" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MucGia" EntityType="Self.MucGia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NhaHang" EntityType="Self.NhaHang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PhanQuyen" EntityType="Self.PhanQuyen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PhuongTien" EntityType="Self.PhuongTien" Schema="dbo" store:Type="Tables" />
@@ -356,7 +365,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Ten" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="HinhAnh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Gia" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="Gia" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="DiaChi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="NgayTao" Type="DateTime" Precision="3" />
@@ -379,7 +388,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ChoNgoi" Type="Int32" />
-          <Property Name="Gia" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="Gia" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="HinhAnh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="NoiDung" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="IDPhuongTien" Type="Int32" />
@@ -403,8 +412,8 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TenTour" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="HinhAnh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="GiaCu" Type="Decimal" Precision="18" Scale="3" />
-          <Property Name="GiaMoi" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="GiaCu" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GiaMoi" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="BaiViet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="DiemDen" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="IDDiaDiem" Type="Int32" />
@@ -527,6 +536,7 @@
             <End Role="PhanQuyen" EntitySet="PhanQuyens" />
           </AssociationSet>
           <EntitySet Name="LoaiPhuongTiens" EntityType="TestDataModel.LoaiPhuongTien" />
+          <EntitySet Name="MucGias" EntityType="TestDataModel.MucGia" />
         </EntityContainer>
         <EntityType Name="LoaiPhuongTien">
           <Key>
@@ -534,6 +544,14 @@
           </Key>
           <Property Name="IDPhuongTien" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Ten" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="MucGia">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MucGia1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MoTa" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -709,6 +727,15 @@
               <MappingFragment StoreEntitySet="LoaiPhuongTien">
                 <ScalarProperty Name="Ten" ColumnName="Ten" />
                 <ScalarProperty Name="IDPhuongTien" ColumnName="IDPhuongTien" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MucGias">
+            <EntityTypeMapping TypeName="TestDataModel.MucGia">
+              <MappingFragment StoreEntitySet="MucGia">
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+                <ScalarProperty Name="MucGia1" ColumnName="MucGia" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

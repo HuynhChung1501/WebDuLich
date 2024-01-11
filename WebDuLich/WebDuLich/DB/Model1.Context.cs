@@ -39,5 +39,6 @@ namespace WebDuLich.DB
         public virtual DbSet<Tour> Tours { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<LoaiPhuongTien> LoaiPhuongTiens { get; set; }
+        public virtual DbSet<MucGia> MucGias { get; set; }
     }
 }

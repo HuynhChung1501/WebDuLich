@@ -24,6 +24,7 @@
         <AssociationConnector Association="TestDataModel.FK_Tour_KhachSan1" ManuallyRouted="false" />
         <AssociationConnector Association="TestDataModel.FK_PhanQuyen_User" ManuallyRouted="false" />
         <EntityTypeShape EntityType="TestDataModel.LoaiPhuongTien" Width="1.5" PointX="4.75" PointY="8.75" />
+        <EntityTypeShape EntityType="TestDataModel.MucGia" Width="1.5" PointX="10.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
