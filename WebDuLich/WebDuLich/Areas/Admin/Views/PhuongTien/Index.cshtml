@@ -2,9 +2,8 @@
 
 @model MapPhuongTienView
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Danh sách phương tiện";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
-    int stt = 1;
 
     List<WebDuLich.DB.LoaiPhuongTien> loaiPhuongTiens = Model.DanhSachLoaiPhuongTien;
     var mucGias = Model.DSMucGia;

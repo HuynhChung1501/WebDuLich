@@ -4,7 +4,9 @@ var main = {
         main.upEvent();
     },
     onEvent: function () {
-        
+        $(".menuLeft .nav-item .nav-link").click(function (e) {
+            $(".menuLeft .nav-item").find(".nav-link").removeClass("active");
+        });
     },
     upEvent: function () {
         $('.quickSubmit').click(function (e) {
@@ -25,6 +27,23 @@ var main = {
                 },
             });
         });
+    },
+
+    afterLoad: function () {
+        // Lấy danh sách các href từ các phần tử a trong ul li
+        var hrefList = [];
+
+        $('.menuLeft .nav-item').find('a').each(function () {
+            $(this).removeClass("active")
+            var href = $(this).attr('href');
+            hrefList.push(href);
+            hrefList.forEach(element => {
+                if (window.location.pathname == href) {
+                    $(this).addClass("active");
+                }
+            });
+        });
+
     }
 }
 
@@ -33,3 +52,8 @@ $(document).ready(function () {
 
     $('.select2').select2()
 });
+
+
+window.onload = function () {
+    main.afterLoad();
+};
