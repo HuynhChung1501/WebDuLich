@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using WebDuLich.App_Start;
 using WebDuLich.Areas.Admin.Models;
 using WebDuLich.DB;
+using WebDuLich.Models.ModelView.KhachSans;
 using WebDuLich.Models.ModelView.PhuongTiens;
 
 namespace WebDuLich.Areas.Admin.Controllers
@@ -19,8 +20,13 @@ namespace WebDuLich.Areas.Admin.Controllers
         // GET: Admin/PhuongTien
         public ActionResult Index()
         {
-            List<PhuongTien> phuongTiens = db.PhuongTiens.ToList();
-            return View(phuongTiens);
+            List<MapDBPhuongTien> phuongTiens = new MapPhuongTien().DanhSach(0, 0);
+            return View(new MapPhuongTienView()
+            {
+                DanhSachPhuongTien = phuongTiens,
+                DSMucGia = db.MucGias.ToList(),
+                DanhSachLoaiPhuongTien = db.LoaiPhuongTiens.ToList(),
+            });
         }
 
         [kiemTraQuyen(ChucNang = "PT_ThemMoi")]
@@ -88,6 +94,18 @@ namespace WebDuLich.Areas.Admin.Controllers
             new MapPhuongTien().Xoa(id);
             ViewBag.thongbao = new MapPhuongTien().thongbao;
             return Redirect("/Admin/PhuongTien");
+        }
+    
+        public ActionResult TimKiem(int IDPhuongTien, int IDMucGia)
+        {
+            List<MapDBPhuongTien> phuongTiens = new MapPhuongTien().DanhSach(IDPhuongTien, IDMucGia);
+
+            return PartialView("_Detail", new MapPhuongTienView()
+            {
+                DanhSachPhuongTien = phuongTiens,
+                DSMucGia = db.MucGias.ToList(),
+                DanhSachLoaiPhuongTien = db.LoaiPhuongTiens.ToList(),
+            });
         }
     }
 }

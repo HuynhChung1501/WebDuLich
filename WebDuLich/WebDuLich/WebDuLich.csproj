@@ -204,6 +204,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DB\MucGia.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="DB\NhaHang.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -225,6 +228,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ModelView\KhachSans\MapKhachSanView.cs" />
     <Compile Include="Models\ModelView\NhaHang\MapNhaHangView.cs" />
     <Compile Include="Models\ModelView\PhuongTiens\MapPhuongTienView.cs" />
     <Compile Include="Models\ModelView\TaiKhoan\MapTaiKhoanView.cs" />
@@ -4112,6 +4116,8 @@
     <Content Include="Areas\Admin\Views\KhachSan\Update.cshtml" />
     <Content Include="Areas\Admin\Views\Tour\_Detail.cshtml" />
     <Content Include="Areas\Admin\Views\NhaHang\_Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\KhachSan\_Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\PhuongTien\_Detail.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

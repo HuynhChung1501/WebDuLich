@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using WebDuLich.App_Start;
 using WebDuLich.Areas.Admin.Models;
 using WebDuLich.DB;
+using WebDuLich.Models.ModelView.KhachSans;
 
 namespace WebDuLich.Areas.Admin.Controllers
 {
@@ -19,7 +20,12 @@ namespace WebDuLich.Areas.Admin.Controllers
         public ActionResult Index()
         {
             List<KhachSan> khachSans = db.KhachSans.ToList();
-            return View(khachSans);
+            
+            return View(new MapKhachSanView()
+            {
+                DSKhachSans = khachSans,
+                DSMucGia = db.MucGias.ToList(),
+            });
         }
 
         [kiemTraQuyen(ChucNang = "KS_ThemMoi")]
@@ -68,6 +74,16 @@ namespace WebDuLich.Areas.Admin.Controllers
             new MapKhachSan().Xoa(id);
             ViewBag.thongbao = new MapKhachSan().thongbao;
             return Redirect("/Admin/KhachSan");
+        }
+
+        public ActionResult TimKiem(string searchName, int IDMucGia)
+        {
+            List<KhachSan> khachSans = new MapKhachSan().TimKiem(searchName, IDMucGia);
+            return PartialView("_Detail",new MapKhachSanView()
+            {
+                DSKhachSans = khachSans,
+                DSMucGia = db.MucGias.ToList(),
+            });
         }
     }
 }

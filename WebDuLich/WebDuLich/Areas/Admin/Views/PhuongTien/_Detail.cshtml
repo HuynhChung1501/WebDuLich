@@ -1,0 +1,56 @@
+﻿@using WebDuLich.Models.ModelView.PhuongTiens
+
+@model MapPhuongTienView
+@{
+    int stt = 1;
+    List<MapDBPhuongTien> dsPhuongTien = Model.DanhSachPhuongTien;
+    List<WebDuLich.DB.LoaiPhuongTien> loaiPhuongTiens = Model.DanhSachLoaiPhuongTien;
+}
+<table class="table table-head-fixed text-nowrap">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Tên phương tiện</th>
+            <th>Chỗ ngỗi</th>
+            <th>Giá </th>
+            <th>Hình ảnh</th>
+            <th>Ngày tạo</th>
+            <th>Người tạo</th>
+            <th>Nội dung</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            foreach (var item in dsPhuongTien)
+            {
+                <tr>
+                    <td>@stt</td>
+                    <td>
+                        @foreach (var phuongTien in loaiPhuongTiens)
+                        {
+                            if (item.IDPhuongTien == phuongTien.IDPhuongTien)
+                            {
+                                @phuongTien.Ten
+                            }
+                        }
+                    </td>
+                    <td>@item.ChoNgoi </td>
+                    <td>@item.Gia</td>
+                    <td>
+                        <img src="@item.HinhAnh" style="border-radius: 50%" width="60" heihgt="60" />
+                    </td>
+                    <td>@Html.Raw(@item.NoiDung)</td>
+                    <td>@item.NgayTao</td>
+                    <td>@item.NguoiTao</td>
+                    <td>
+                        <a class="btn btn-sm btn-outline-info" href="/Admin/PhuongTien/Update?id=@item.ID"><i class="fas fa-pen"></i></a>
+                        <a class="btn btn-sm btn-outline-danger quickDelete" onclick="handlerConfirm('/Admin/PhuongTien/Delete?id=@item.ID')"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+                stt++;
+            }
+        }
+    </tbody>
+</table>

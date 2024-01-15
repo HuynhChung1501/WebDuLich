@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Antlr.Runtime.Misc;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Web;
 using WebDuLich.DB;
@@ -86,6 +88,41 @@ namespace WebDuLich.Areas.Admin.Models
             return false;
 
         }
+
+        public List<KhachSan> TimKiem(string searchName, int? IDMucGia)
+        {
+            if (searchName.Length == 0 && IDMucGia == 0)
+            {
+                return db.KhachSans.ToList();
+            }
+
+            var khachsans = from nh in db.KhachSans
+                            where nh.Ten.Contains(searchName) 
+                            select nh;
+
+            switch (IDMucGia)
+            {
+                case 0:
+                    break;
+
+                case 1:
+                    khachsans = khachsans.Where(n => n.Gia < 1000);
+                    break;
+                case 2:
+                    khachsans = khachsans.Where(n => n.Gia >= 1000 && n.Gia < 6000);
+                    break;
+                case 3:
+                    khachsans = khachsans.Where(n => n.Gia >= 6000 && n.Gia < 11000);
+                    break;
+                case 4:
+                    khachsans = khachsans.Where(n => n.Gia >= 11000);
+                    break;
+            }
+
+            return khachsans.ToList();
+
+        }
+
 
     }
 }
