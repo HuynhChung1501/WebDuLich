@@ -49,7 +49,15 @@
                         <form action="/Admin/PhuongTien/Create" method="post">
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="TenPhuongTien">Tên Phương tiện</label>
+                                    <label for="Code">Mã Phương tiện</label>
+                                    <input type="number" name="Code" class="form-control" id="Code" placeholder="Nhập mã phương tiện">
+                                </div>
+                                <div class="form-group">
+                                    <label for="ten">Tên phương tiện</label>
+                                    <input type="number" name="ten" class="form-control" id="ten" placeholder="Nhập số lượng chỗ ngồi">
+                                </div>
+                                <div class="form-group">
+                                    <label for="TenPhuongTien">Loại phương tiện</label>
                                     <select class="select2 w-100" name="IDPhuongTien">
                                         @if (Model.Count > 0 && Model != null)
                                         {
