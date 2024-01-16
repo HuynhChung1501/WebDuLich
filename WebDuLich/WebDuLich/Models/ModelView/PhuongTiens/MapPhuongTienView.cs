@@ -40,6 +40,5 @@ namespace WebDuLich.Models.ModelView.PhuongTiens
         public DateTime? NgayTao { get; set; }
 
         public string NguoiTao { get; set; }
-
     }
 }

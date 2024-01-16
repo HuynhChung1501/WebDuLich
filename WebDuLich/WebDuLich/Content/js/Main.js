@@ -27,6 +27,23 @@ var main = {
                 },
             });
         });
+
+
+        $('.exportExcel').click(function (e) {
+            e.preventDefault();
+            var idItem = $(this).data('id')
+            $.ajax({
+               url: "/Admin/PhuongTien/ExportExcel",
+               type: 'get',
+               data: { id: idItem },
+               success: function (resp) {
+                   if (resp != "") {
+                       location.href = "/Data/ExportExcel/" + resp
+                   }
+               },
+            });
+        
+        })
     },
 
     afterLoad: function () {
