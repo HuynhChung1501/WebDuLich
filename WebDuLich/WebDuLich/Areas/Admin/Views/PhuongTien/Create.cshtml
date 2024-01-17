@@ -32,25 +32,13 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header">
-                            <div class="card-tools">
-                                <div class="input-group input-group-sm" style="width: 150px;">
-                                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
-                                    <div class="input-group-append">
-                                        <button type="submit" class="btn btn-default">
-                                            <i class="fas fa-search"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                       
                         <!-- /.card-header -->
                         <form action="/Admin/PhuongTien/Create" method="post">
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="TenPhuongTien">Tên Phương tiện</label>
-                                    <select class="select2 w-100" name="IDPhuongTien">
+                                    <label for="TenPhuongTien">Loại phương tiện</label>
+                                    <select class="select2 w-100" id="IDPhuongTien" name="IDPhuongTien">
                                         @if (Model.Count > 0 && Model != null)
                                         {
                                             foreach (var item in Model)
@@ -60,6 +48,16 @@
                                         }
                                     </select>
                                 </div>
+                                <div class="form-group">
+                                    <label for="Code">Mã Phương tiện</label>
+                                    <input type="text" name="MaCoode" class="form-control" value="OT-" readonly id="MaCoode">
+                                    <input type="text" name="Code" class="form-control" id="Code" placeholder="Nhập mã phương tiện">
+                                </div>
+                                <div class="form-group">
+                                    <label for="ten">Tên phương tiện</label>
+                                    <input type="text" name="ten" class="form-control" id="ten" placeholder="Nhập số lượng chỗ ngồi">
+                                </div>
+
                                 <div class="form-group">
                                     <label for="ChoNgoi">Chỗ ngồi</label>
                                     <input type="number" name="ChoNgoi" class="form-control" id="ChoNgoi" placeholder="Nhập số lượng chỗ ngồi">

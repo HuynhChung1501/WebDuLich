@@ -1,4 +1,5 @@
 ﻿@using WebDuLich.Models.ModelView.PhuongTiens
+@using WebDuLich.Common
 
 @model MapPhuongTienView
 @{
@@ -10,7 +11,9 @@
     <thead>
         <tr>
             <th>STT</th>
+            <th>Mã</th>
             <th>Tên phương tiện</th>
+            <th>Loại phương tiện</th>
             <th>Chỗ ngỗi</th>
             <th>Giá </th>
             <th>Hình ảnh</th>
@@ -27,6 +30,8 @@
             {
                 <tr>
                     <td>@stt</td>
+                    <td>@item.Code</td>
+                    <td>@item.Ten</td>
                     <td>
                         @foreach (var phuongTien in loaiPhuongTiens)
                         {
@@ -37,13 +42,16 @@
                         }
                     </td>
                     <td>@item.ChoNgoi </td>
-                    <td>@item.Gia</td>
                     <td>
-                        <img src="@item.HinhAnh" style="border-radius: 50%" width="60" heihgt="60" />
+                        <span>@Base.FormatNumberVND(item.Gia)</span>
                     </td>
-                    <td>@Html.Raw(@item.NoiDung)</td>
+                    <td>
+                        <img src="@item.HinhAnh"width="60" heihgt="60" />
+                    </td>
                     <td>@item.NgayTao</td>
                     <td>@item.NguoiTao</td>
+
+                    <td>@Html.Raw(@item.NoiDung)</td>
                     <td>
                         <a class="btn btn-sm btn-outline-info" href="/Admin/PhuongTien/Update?id=@item.ID"><i class="fas fa-pen"></i></a>
                         <a class="btn btn-sm btn-outline-danger quickDelete" onclick="handlerConfirm('/Admin/PhuongTien/Delete?id=@item.ID')"><i class="fas fa-trash"></i></a>
@@ -54,3 +62,4 @@
         }
     </tbody>
 </table>
+

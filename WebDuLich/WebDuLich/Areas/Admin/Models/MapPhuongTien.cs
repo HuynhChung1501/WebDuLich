@@ -42,6 +42,14 @@ namespace WebDuLich.Areas.Admin.Models
                     thongbao = "Trường phương tiện không để để trống";
                     return false;
                 }
+
+                var checkCode = db.PhuongTiens.Where(n => n.Code.ToLower().Contains(model.Code.ToLower()));
+
+                if (checkCode != null)
+                {
+                    thongbao = "Trường mã phương tiện đã tồn tại";
+                    return false;
+                }
                 db.PhuongTiens.Add(model);
                 db.SaveChanges();
                 thongbao = "Thêm mới thông báo thành công";
@@ -68,8 +76,7 @@ namespace WebDuLich.Areas.Admin.Models
                     thongbao = "Tên phương tiện không được để trống";
                     return false;
                 }
-
-                PhuongTien.IDPhuongTien = model.IDPhuongTien;
+                PhuongTien.Ten = model.Ten;
                 PhuongTien.ChoNgoi = model.ChoNgoi;
                 PhuongTien.Gia = model.Gia;
                 PhuongTien.HinhAnh = model.HinhAnh;
@@ -105,6 +112,8 @@ namespace WebDuLich.Areas.Admin.Models
                               select new MapDBPhuongTien
                               {
                                   ID = item.ID,
+                                  Code = item.Code,
+                                  Ten= item.Ten,
                                   ChoNgoi = item.ChoNgoi,
                                   Gia = (int)item.Gia,
                                   HinhAnh = item.HinhAnh,
@@ -112,7 +121,7 @@ namespace WebDuLich.Areas.Admin.Models
                                   IDPhuongTien = (int)LPhuongTien.IDPhuongTien,
                                   NgayTao = item.NgayTao,
                                   NguoiTao = item.NguoiTao,
-                                  TenPhuongTien = LPhuongTien.Ten
+                                  TenLoaiPhuongTien = LPhuongTien.Ten
                               };
 
 
@@ -122,16 +131,16 @@ namespace WebDuLich.Areas.Admin.Models
                     break;
 
                 case 1:
-                    phuongTiens = phuongTiens.Where(n => n.Gia < 1000);
+                    phuongTiens = phuongTiens.Where(n => n.Gia < 1000000);
                     break;
                 case 2:
-                    phuongTiens = phuongTiens.Where(n => n.Gia >= 1000 && n.Gia < 6000);
+                    phuongTiens = phuongTiens.Where(n => n.Gia >= 1000000 && n.Gia < 6000000);
                     break;
                 case 3:
-                    phuongTiens = phuongTiens.Where(n => n.Gia >= 6000 && n.Gia < 11000);
+                    phuongTiens = phuongTiens.Where(n => n.Gia >= 6000000 && n.Gia < 11000000);
                     break;
                 case 4:
-                    phuongTiens = phuongTiens.Where(n => n.Gia >= 11000);
+                    phuongTiens = phuongTiens.Where(n => n.Gia >= 11000000);
                     break;
             }
 

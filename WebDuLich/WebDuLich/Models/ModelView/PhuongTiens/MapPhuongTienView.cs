@@ -25,6 +25,10 @@ namespace WebDuLich.Models.ModelView.PhuongTiens
     {
         public int ID { get; set; }
 
+        public string Code { get; set; }
+
+        public string Ten { get; set; }
+
         public int? ChoNgoi { get; set; }
 
         public int? Gia { get; set; }
@@ -35,11 +39,10 @@ namespace WebDuLich.Models.ModelView.PhuongTiens
 
         public int IDPhuongTien { get; set; }
         
-        public string TenPhuongTien { get; set; }
+        public string TenLoaiPhuongTien { get; set; }
 
         public DateTime? NgayTao { get; set; }
 
         public string NguoiTao { get; set; }
-
     }
 }

@@ -16,5 +16,6 @@ namespace WebDuLich.DB
     {
         public int IDPhuongTien { get; set; }
         public string Ten { get; set; }
+        public string Code { get; set; }
     }
 }
