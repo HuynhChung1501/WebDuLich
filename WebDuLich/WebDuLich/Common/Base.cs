@@ -14,7 +14,11 @@ namespace WebDuLich.Common
         // conver chuỗi html sang dạng chuỗi
         public static string StripHTML(string input)
         {
-            return Regex.Replace(input, "<.*?>", String.Empty);
+            if (!string.IsNullOrEmpty(input))
+            {
+                return Regex.Replace(input, "<.*?>", String.Empty);
+            }
+            return input;
         }
 
 

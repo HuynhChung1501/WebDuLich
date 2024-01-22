@@ -33,7 +33,7 @@ var main = {
             e.preventDefault();
             var idItem = $(this).data('id')
             $.ajax({
-               url: "/Admin/PhuongTien/ExportExcel",
+                url: idItem,
                type: 'get',
                data: { id: idItem },
                success: function (resp) {
@@ -44,6 +44,7 @@ var main = {
             });
         
         })
+
     },
 
     afterLoad: function () {

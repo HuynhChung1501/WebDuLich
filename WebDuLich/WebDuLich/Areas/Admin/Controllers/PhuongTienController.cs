@@ -185,7 +185,7 @@ namespace WebDuLich.Areas.Admin.Controllers
             {
                 // mở file excel
 
-                string pathFile = Server.MapPath("~/Data/ImportExcel/ImportData.xlsx");
+                string pathFile = Server.MapPath("~/Data/ImportExcel/ImportData-phuongtien.xlsx");
 
                 var wbook = new XLWorkbook(pathFile);
 

@@ -11,10 +11,22 @@ namespace WebDuLich.Areas.Admin.Models
         TestDataEntities db = new TestDataEntities();
         public string thongbao = "";
 
-        public List<Tour> DanhSach()
+        public List<Tour> DanhSach(int? IdDiaDIem, int? IDKhachSan)
         {
-            List<Tour> tours = db.Tours.ToList();
-            return tours;
+            if (IdDiaDIem == 0 && IDKhachSan == 0)
+            {
+                return db.Tours.ToList();
+            }
+            if (IdDiaDIem != null && IDKhachSan != null)
+            {
+                var tours = from t in db.Tours
+                            where (IdDiaDIem == 0 || t.IDDiaDiem == IdDiaDIem)
+                            where (IDKhachSan == 0 || t.IDKhachSan == IDKhachSan)
+                            select t;
+                return tours.ToList();
+            }
+
+            return null;
         }
 
         public Tour Chitiet(int id)
@@ -26,24 +38,6 @@ namespace WebDuLich.Areas.Admin.Models
                 return tour;
             }
             thongbao = "không tìm thấy Tour phù hợp";
-            return null;
-        }
-
-        public List<Tour> TimKiem(int? IdDiaDIem, int? IDKhachSan) 
-        {
-            
-            if (IdDiaDIem == 0 && IDKhachSan == 0)
-            {
-                return db.Tours.ToList();
-            }
-            if(IdDiaDIem != null)
-            {
-                var tours = from t in db.Tours
-                            where (IdDiaDIem == 0 || t.IDDiaDiem == IdDiaDIem )
-                            where (IDKhachSan == 0 || t.IDKhachSan == IDKhachSan )
-                            select t;
-                return tours.ToList();
-            }
             return null;
         }
 
