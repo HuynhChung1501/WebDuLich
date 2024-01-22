@@ -7,5 +7,6 @@ namespace WebDuLich.Models.ModelView.NhaHang
 {
     public class MapNhaHangView
     {
+
     }
 }

@@ -11,10 +11,17 @@ namespace WebDuLich.Areas.Admin.Models
         TestDataEntities db = new TestDataEntities();
         public string thongbao = "";
 
-        public List<NhaHang> DanhSach()
+        public List<NhaHang> DanhSach(string searchName)
         {
-            List<NhaHang> nhaHangs = db.NhaHangs.ToList();
-            return nhaHangs;
+            if (string.IsNullOrEmpty(searchName))
+            {
+                return db.NhaHangs.ToList();
+            }
+
+            var nhaHangs = from nh in db.NhaHangs
+                           where nh.Ten.ToLowerInvariant().Contains(searchName.ToLowerInvariant()) || nh.DiaChi.ToLowerInvariant().Contains(searchName.ToLowerInvariant())
+                           select nh;
+            return nhaHangs.ToList();
         }
 
         public NhaHang Chitiet(int id)
@@ -90,19 +97,6 @@ namespace WebDuLich.Areas.Admin.Models
             }
             return false;
 
-        }
-
-        public List<NhaHang> TimKiem(string searchName)
-        {
-            if (string.IsNullOrEmpty(searchName))
-            {
-                return db.NhaHangs.ToList();
-            }
-            
-            var nhaHangs = from nh in db.NhaHangs
-                            where nh.Ten.ToLowerInvariant().Contains(searchName.ToLowerInvariant()) || nh.DiaChi.ToLowerInvariant().Contains(searchName.ToLowerInvariant())
-                           select nh;
-            return nhaHangs.ToList();
         }
 
     }
