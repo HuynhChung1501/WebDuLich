@@ -4,20 +4,6 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
     int stt = 1;
     List<WebDuLich.DB.User> users = Model.Users;
-
-    var msg = ViewData["msgsuccess"] != null ? ViewData["msgsuccess"] : "";
-}
-
-
-
-@if (msg != null)
-{
-    @section script
-{
-        <script>
-            toastr.success("@ViewData["msgsuccess"]")
-        </script>
-    }
 }
 
 <!-- Content Header (Page header) -->
@@ -47,7 +33,6 @@
                     <div class="card">
                         <div class="card-header">
                             <a href="/Admin/TaiKhoan/Create" class="btn btn-primary">Thêm mới</a>
-
                             <div class="card-tools">
                                 <div class="input-group input-group-sm" style="width: 150px;">
                                     <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
@@ -66,7 +51,7 @@
                                 <thead>
                                     <tr>
                                         <th>STT</th>
-                                        <th>Tài khoan</th>
+                                        <th>Tài khoản</th>
                                         <th>Avatar</th>
                                         <th>Họ & tên</th>
                                         <th>Số điện thoại </th>
