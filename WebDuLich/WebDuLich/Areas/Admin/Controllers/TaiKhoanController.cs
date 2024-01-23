@@ -18,7 +18,6 @@ namespace WebDuLich.Areas.Admin.Controllers
         // GET: Admin/taiKhoan
         public ActionResult Index()
         {
-            ViewData["msgsuccess"] = "Đăng ký thành công";
             List<User> users = db.Users.ToList();
             return View(new MapTaiKhoanView()
             {
@@ -28,7 +27,12 @@ namespace WebDuLich.Areas.Admin.Controllers
 
         public ActionResult Create()
         {
-            
+            if (TempData["result"] != null)
+            {
+                ViewBag.success = TempData["result"];
+            }
+
+
             return View();
         }
 
@@ -45,12 +49,10 @@ namespace WebDuLich.Areas.Admin.Controllers
                 Avatar = model.Avatar,
                 Password = model.Password,
             };
-            new MapTaiKhoan().ThemMoi(us);
-            ViewBag.thongbao = new MapTaiKhoan().thongbao;
-           
-
-            return Redirect("/Admin/TaiKhoan");
-
+            MapTaiKhoan mapTaiKhoan = new MapTaiKhoan();
+            mapTaiKhoan.ThemMoi(us);
+            TempData["result"] = mapTaiKhoan.thongbao;
+            return RedirectToAction("Create");
         }
 
         public ActionResult Update(string userName)

@@ -2,8 +2,14 @@
     ViewBag.title = "Thêm mới tài khoản";
     int stt = 1;
     var user = (WebDuLich.DB.User)System.Web.HttpContext.Current.Session["user"];
+    //var msg = ViewData["msgsuccess"] != null ? ViewData["msgsuccess"].ToString() : "";
+    //var a = TempData["msg"];
+    //var msg = a != null ? a.ToString() : "";
+
 
 }
+
+
 
 
 <!-- Content Header (Page header) -->
@@ -33,9 +39,6 @@
                     <div class="card">
                         <!-- /.card-header -->
                         <form action="/Admin/TaiKhoan/Create" method="post">
-                            @if (!string.IsNullOrEmpty(ViewBag.thongbao))
-                            {
-                            }
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="taikhoan">Tên tài khoản</label>
@@ -100,33 +103,38 @@
 <!-- /.content -->
 
 
+
 @section script
 {
     <script>
+            var msg = '@ViewBag.success';
+        if (msg.length > 0) {
+            toastr.success(msg)
+        }
         function chooseImage() {
             var finder = new CKFinder();
             finder.selectActionFunction = dienUrlVaoInput;
             finder.popup();
         }
-        
-        //CKEDITOR.replace("txtBaiViet")
 
+        //CKEDITOR.replace("txtBaiViet")
+        ViewBag.msg
         function dienUrlVaoInput(fileUrl) {
             $("input[name=Avatar]").val(fileUrl)
             $('#txt-HinhAnh').append(fileUrl);
         }
 
         $('.select2').select2()
-                //$(function () {
-                //    $('input[name="NgayTao"]').daterangepicker({
-                //        singleDatePicker: true,
-                //        showDropdowns: true,
-                //        minYear: 1901,
-                //        maxYear: parseInt(moment().format('YYYY'), 10)
-                //    }, function (start, end, label) {
-                //        var years = moment().diff(start, 'years');
-                //    });
-                //});
+        //$(function () {
+        //    $('input[name="NgayTao"]').daterangepicker({
+        //        singleDatePicker: true,
+        //        showDropdowns: true,
+        //        minYear: 1901,
+        //        maxYear: parseInt(moment().format('YYYY'), 10)
+        //    }, function (start, end, label) {
+        //        var years = moment().diff(start, 'years');
+        //    });
+        //});
 
     </script>
 }
