@@ -31,8 +31,6 @@ namespace WebDuLich.Areas.Admin.Controllers
             {
                 ViewBag.success = TempData["result"];
             }
-
-
             return View();
         }
 

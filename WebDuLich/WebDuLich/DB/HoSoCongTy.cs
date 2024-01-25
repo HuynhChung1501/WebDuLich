@@ -24,5 +24,6 @@ namespace WebDuLich.DB
         public string Maso { get; set; }
         public Nullable<System.DateTime> NgayTao { get; set; }
         public string NguoiTao { get; set; }
+        public Nullable<bool> IsActive { get; set; }
     }
 }

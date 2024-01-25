@@ -1,0 +1,73 @@
+﻿@model WebDuLich.Models.ModelView.HSCongTys.MapHSCongTyView
+@{
+    int stt = 1;
+
+}
+<table class="table table-head-fixed text-nowrap">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Tên</th>
+            <th>Mã</th>
+            <th>Logo</th>
+            <th>Điện thoại</th>
+            <th>Email</th>
+            <th>Giới thiệu</th>
+            <th>Địa chỉ</th>
+            <th>Ngày tạo</th>
+            <th>Người tạo</th>
+            <th>Trạng thái</th>
+            <th>Chức năng</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            foreach (var item in Model.DanhSachHoSoCongTy)
+            {
+                <tr>
+                    <td>@stt</td>
+                    <td>@item.Ten</td>
+                    <td>@item.Maso</td>
+                    <td>
+                        <img src="@item.Logo" style="border-radius: 50%" width="60" heihgt="60" />
+                    </td>
+                    <td>@item.DienThoai</td>
+                    <td>@item.Email</td>
+                    <td>@Html.Raw(@item.GioiThieu)</td>
+                    <td>@item.DiaChi</td>
+                    <td>@item.NgayTao</td>
+                    <td>@item.NguoiTao</td>
+                    <td class="text-center">
+                        @{
+                            <div class="custom-control custom-checkbox">
+                                <input class="custom-control-input onchangeActive"
+                                       type="checkbox"
+                                       @(item.IsActive == true ? "checked" : "")
+                                       data-id="@item.ID"
+                                       data-url="/admin/HSCongTy/ActiveCongtyController"
+                                       id="check1-@stt"
+                                       name="item"/>
+                                <label for="check1-@stt" class="custom-control-label"></label>
+                            </div>
+                        }
+                    </td>
+                    <td>
+                        <a class="btn btn-sm btn-outline-info" href="/Admin/HSCongTy/Update?id=@item.ID"><i class="fas fa-pen"></i></a>
+                        <a class="btn btn-sm btn-outline-danger quickDelete" onclick="handlerConfirm('/Admin/HSCongTy/Delete?id=@item.ID')"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+                stt++;
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="9">
+                    <span class="font-italic">Không có dự liệu</span>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

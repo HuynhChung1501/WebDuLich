@@ -1,0 +1,147 @@
+﻿@model  WebDuLich.DB.HoSoCongTy
+
+@{
+    ViewBag.title = "Chỉnh sửa công ty";
+    int stt = 1;
+}
+
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>@ViewBag.title</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Home">Home</a></li>
+                    <li class="breadcrumb-item active">Chỉnh sửa công ty</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <!-- SELECT2 EXAMPLE -->
+        <div class="card card-default">
+            <!-- /.card-header -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-tools">
+                                <div class="input-group input-group-sm" style="width: 150px;">
+                                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-default">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <form action="/Admin/HSCongTy/Update" method="post">
+                            <div class="card-body"> 
+                                <input type="hidden" name="ID" class="form-control"  value="@Model.ID">
+                                <div class="form-group">
+                                    <label for="Ten" class="required">Tên công ty</label>
+                                    <input type="text" name="Ten" class="form-control" value="@Model.Ten" id="Ten" placeholder="Nhập công ty">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Maso" class="required">Mã số</label>
+                                    <input type="text" name="Maso" class="form-control" value="@Model.Maso" id="Maso" placeholder="Nhập mã số">
+                                </div>
+                                <div class="form-group">
+                                    <label for="HinhAnh" class="form-label">Logo</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="text" class="custom-file-input" name="Logo" value="@Model.Logo" value="" id="HinhAnh">
+                                            <label class="custom-file-label" id="txt-HinhAnh" for="Logo">@Model.Logo</label>
+                                        </div>
+                                        <div type="button" onclick="chooseImage()" class="input-group-append">
+                                            <span class="input-group-text">Upload</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="DienThoai">Điện thoại</label>
+                                    <input type="number" name="DienThoai" class="form-control" id="DienThoai" value="@Model.DienThoai" placeholder="Nhập điện thoại">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Email">Email</label>
+                                    <input type="email" name="Email" class="form-control" id="Email" value="@Model.Email" placeholder="Nhập Email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="DiaChi">DiaChi</label>
+                                    <input type="text" name="DiaChi" class="form-control" id="DiaChi" value="@Model.DiaChi" placeholder="Nhập địa chỉ">
+                                </div>
+                                <div class="form-group">
+                                    <label for="GioiThieu" class="form-label">Giới thiệu</label>
+                                    <textarea class="form-control" name="GioiThieu" id="txtBaiViet"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="NgayTao">Ngày tạo</label>
+                                    <input type="text" name="NgayTao" class="form-control" value="@Model.NgayTao" readonly id="NgayTao">
+                                </div>
+                                <div class="form-group">
+                                    <label for="NguoiTao">Người tạo</label>
+                                    <input type="text" name="NguoiTao" class="form-control" readonly id="NguoiTao" value="@Model.NguoiTao">
+                                </div>
+                            </div>
+                            <div class="card-footer text-right">
+                                <button type="submit" class="btn btn-primary">Thêm</button>
+                            </div>
+                        </form>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+
+
+@section script
+{
+    <script>
+        var msg = '@ViewBag.success';
+        if (msg.length > 0) {
+            toastr.success(msg)
+        }
+        function chooseImage() {
+            var finder = new CKFinder();
+            finder.selectActionFunction = dienUrlVaoInput;
+            finder.popup();
+        }
+
+        CKEDITOR.replace("txtBaiViet")
+
+        function dienUrlVaoInput(fileUrl) {
+            $("input[name=HinhAnh]").val(fileUrl)
+            $('#txt-HinhAnh').append(fileUrl);
+        }
+
+        $('.select2').select2()
+            //$(function () {
+            //    $('input[name="NgayTao"]').daterangepicker({
+            //        singleDatePicker: true,
+            //        showDropdowns: true,
+            //        minYear: 1901,
+            //        maxYear: parseInt(moment().format('YYYY'), 10)
+            //    }, function (start, end, label) {
+            //        var years = moment().diff(start, 'years');
+            //    });
+            //});
+
+    </script>
+}

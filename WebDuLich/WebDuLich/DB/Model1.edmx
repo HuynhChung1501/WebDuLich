@@ -68,6 +68,7 @@
           <Property Name="Maso" Type="char" MaxLength="15" />
           <Property Name="NgayTao" Type="datetime" />
           <Property Name="NguoiTao" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsActive" Type="bit" />
         </EntityType>
         <EntityType Name="KhachSan">
           <Key>
@@ -125,15 +126,15 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="50" />
+          <Property Name="Ten" Type="nvarchar" MaxLength="200" />
+          <Property Name="HinhAnh" Type="nvarchar(max)" />
           <Property Name="ChoNgoi" Type="int" />
           <Property Name="Gia" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="HinhAnh" Type="nvarchar(max)" />
           <Property Name="NoiDung" Type="nvarchar" MaxLength="150" />
           <Property Name="IDPhuongTien" Type="int" />
           <Property Name="NgayTao" Type="datetime" />
           <Property Name="NguoiTao" Type="nvarchar" MaxLength="150" />
-          <Property Name="Ten" Type="nvarchar" MaxLength="200" />
-          <Property Name="Code" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -332,21 +333,6 @@
           <Property Name="IdAlbum" Type="Int32" />
           <NavigationProperty Name="AlbumAnh" Relationship="Self.FK_HinhAnh_AlbumAnh" FromRole="HinhAnh" ToRole="AlbumAnh" />
         </EntityType>
-        <EntityType Name="HoSoCongTy">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Ten" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="DienThoai" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
-          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="GioiThieu" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="DiaChi" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Logo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Maso" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
-          <Property Name="NgayTao" Type="DateTime" Precision="3" />
-          <Property Name="NguoiTao" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="KhachSan">
           <Key>
             <PropertyRef Name="ID" />
@@ -512,7 +498,6 @@
           <EntitySet Name="DiaDiems" EntityType="Self.DiaDiem" />
           <EntitySet Name="GioiThieux" EntityType="Self.GioiThieu" />
           <EntitySet Name="HinhAnhs" EntityType="Self.HinhAnh" />
-          <EntitySet Name="HoSoCongTies" EntityType="Self.HoSoCongTy" />
           <EntitySet Name="KhachSans" EntityType="Self.KhachSan" />
           <EntitySet Name="NhaHangs" EntityType="Self.NhaHang" />
           <EntitySet Name="PhanQuyens" EntityType="Self.PhanQuyen" />
@@ -542,6 +527,7 @@
           </AssociationSet>
           <EntitySet Name="LoaiPhuongTiens" EntityType="TestDataModel.LoaiPhuongTien" />
           <EntitySet Name="MucGias" EntityType="TestDataModel.MucGia" />
+          <EntitySet Name="HoSoCongTies" EntityType="TestDataModel.HoSoCongTy" />
         </EntityContainer>
         <EntityType Name="LoaiPhuongTien">
           <Key>
@@ -558,6 +544,22 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MucGia1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MoTa" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="HoSoCongTy">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ten" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="DienThoai" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="GioiThieu" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChi" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Logo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Maso" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="NgayTao" Type="DateTime" Precision="3" />
+          <Property Name="NguoiTao" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -616,22 +618,6 @@
                 <ScalarProperty Name="NguoiTao" ColumnName="NguoiTao" />
                 <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
                 <ScalarProperty Name="IdAlbum" ColumnName="IdAlbum" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="HoSoCongTies">
-            <EntityTypeMapping TypeName="TestDataModel.HoSoCongTy">
-              <MappingFragment StoreEntitySet="HoSoCongTy">
-                <ScalarProperty Name="NguoiTao" ColumnName="NguoiTao" />
-                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Ten" ColumnName="Ten" />
-                <ScalarProperty Name="DienThoai" ColumnName="DienThoai" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="GioiThieu" ColumnName="GioiThieu" />
-                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
-                <ScalarProperty Name="Logo" ColumnName="Logo" />
-                <ScalarProperty Name="Maso" ColumnName="Maso" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -744,6 +730,23 @@
               <MappingFragment StoreEntitySet="MucGia">
                 <ScalarProperty Name="MoTa" ColumnName="MoTa" />
                 <ScalarProperty Name="MucGia1" ColumnName="MucGia" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HoSoCongTies">
+            <EntityTypeMapping TypeName="TestDataModel.HoSoCongTy">
+              <MappingFragment StoreEntitySet="HoSoCongTy">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="NguoiTao" ColumnName="NguoiTao" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+                <ScalarProperty Name="Maso" ColumnName="Maso" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="GioiThieu" ColumnName="GioiThieu" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DienThoai" ColumnName="DienThoai" />
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

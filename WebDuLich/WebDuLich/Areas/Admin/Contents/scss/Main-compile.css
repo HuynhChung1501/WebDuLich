@@ -1,0 +1,11 @@
+label.required {
+  position: relative;
+}
+label.required::after {
+  content: "*";
+  position: absolute;
+  top: 20%;
+  right: -10px;
+  color: red;
+  font-size: 14px;
+}/*# sourceMappingURL=Main-compile.css.map */

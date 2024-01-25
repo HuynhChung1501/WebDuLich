@@ -1,0 +1,82 @@
+﻿@{
+    ViewBag.Title = "Danh sách công ty";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>@ViewBag.title</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Home">Home</a></li>
+                    <li class="breadcrumb-item active">Danh sách công ty</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <!-- SELECT2 EXAMPLE -->
+        <div class="card card-default">
+            <!-- /.card-header -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <form action="/Admin/HSCongTy/TimKiem" method="post" id="SearchNhaHang" class="formSubmit">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                        <div class="row">
+                                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                                <div class="card-toolsinput-group">
+                                                    <input type="text" name="searchName" class="form-control float-right" placeholder="Search">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-primary quickSubmit">
+                                                        <i class="fas fa-search"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-right">
+                                        <a href="/Admin/HSCongTy/Create" class="btn btn-primary">Thêm mới</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body table-responsive p-0" style="height: 650px;">
+                            <div id="tableForm">
+                                @Html.Partial("_Detail")
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+
+@section script {
+    <script>
+        var msg = '@ViewBag.success';
+
+        if (msg.length > 0) {
+            toastr.success(msg)
+        }
+    </script>    
+}

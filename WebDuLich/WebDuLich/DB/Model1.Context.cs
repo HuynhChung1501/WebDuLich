@@ -30,7 +30,6 @@ namespace WebDuLich.DB
         public virtual DbSet<DiaDiem> DiaDiems { get; set; }
         public virtual DbSet<GioiThieu> GioiThieux { get; set; }
         public virtual DbSet<HinhAnh> HinhAnhs { get; set; }
-        public virtual DbSet<HoSoCongTy> HoSoCongTies { get; set; }
         public virtual DbSet<KhachSan> KhachSans { get; set; }
         public virtual DbSet<NhaHang> NhaHangs { get; set; }
         public virtual DbSet<PhanQuyen> PhanQuyens { get; set; }
@@ -40,5 +39,6 @@ namespace WebDuLich.DB
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<LoaiPhuongTien> LoaiPhuongTiens { get; set; }
         public virtual DbSet<MucGia> MucGias { get; set; }
+        public virtual DbSet<HoSoCongTy> HoSoCongTies { get; set; }
     }
 }
